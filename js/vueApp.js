@@ -51,7 +51,6 @@ let introModal = new Vue({
                 }
             }
         },
-        //entry failure checker
         entryTick: function (){
             if (this.entryId.length === 10) {
                 return {
