@@ -43,6 +43,20 @@ let introModal = new Vue({
                     errorTick: true
                 }
             }
+        },
+        entryErrorTick: function (){
+            if (this.entryId.length > 10) {
+                return {
+                    errorTick: true
+                }
+            }
+        },
+        entryTick: function (){
+            if (this.entryId.length === 10) {
+                return {
+                    classTick: true
+                }
+            }
         }
     }
 });
