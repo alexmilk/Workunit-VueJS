@@ -62,7 +62,7 @@
                     </colgroup>
                     <tr>
                         <td><h5 v-text="message1"></h5></td>
-                        <td><input class="form-control" v-bind:class="greenObject" id="partnerPrototype" style="margin-left: -20px;" type="text" placeholder="1666321" v-model="partnerId"/>
+                        <td><input class="form-control" id="partnerPrototype" style="margin-left: -20px;" type="text" placeholder="1666321" v-model="partnerId"/>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="partnerTick"/>
                             <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="partnerErrorTick"/>
                     </td>
@@ -76,7 +76,9 @@
                     </tr>
                     <tr>
                         <td><h5 v-text="message3"></h5></td>
-                        <td><input class='form-control'  id="entryPrototype" style="margin-left: -20px;" type="text" placeholder="0_kjb4gz27"/></td>
+                        <td><input class='form-control'  id="entryPrototype" style="margin-left: -20px;" type="text" placeholder="0_kjb4gz27" v-model="entryId"/></td>
+                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="entryTick"/>
+                            <img src="images/error.png" alt="Check your entry id" width="25" height="25" style="display: none" v-bind:class="entryErrorTick"/></td>
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed" checked>
