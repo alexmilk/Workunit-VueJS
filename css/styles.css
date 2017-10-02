@@ -7,6 +7,18 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+.classGreen {
+    background-color: #97ffae !important;
+}
+.classRed {
+    background-color: #ff2c10 !important;
+}
+.classTick {
+    display: block !important;
+}
+.errorTick {
+    display: block !important;
+}
 .inputBox {
     display: inline-block;
     -webkit-box-sizing: content-box;
