@@ -2,7 +2,7 @@
  * Created by alex.milkis on 30/09/2017.
  */
 let introModal = new Vue({
-    el: '.modal-body',
+    el: '.modal-dialog',
     data: {
         message1: 'Partner Id:',
         message2: 'Player Id:',
@@ -10,6 +10,7 @@ let introModal = new Vue({
         classGreen: false,
         classRed: false,
         classTick: false,
+        disabled: false,
         errorTick: false,
         partnerId: '',
         uiconfId: '',
@@ -17,10 +18,14 @@ let introModal = new Vue({
     },
     computed: {
         partnerErrorTick: function () {
-             if (this.partnerId.length >= 8){
+            if (this.partnerId.length >= 8) {
+                this.disabled = true;
                 return {
-                    errorTick: true
+                    errorTick: true,
+                    disabled: true
                 }
+            } else if (this.partnerId.length === 8) {
+                this.disabled = false;
             }
         },
         partnerTick: function () {
@@ -39,16 +44,22 @@ let introModal = new Vue({
         },
         playerErrorTick: function () {
             if (this.uiconfId.length >= 9) {
+                this.disabled = true;
                 return {
                     errorTick: true
                 }
+            } else if (this.uiconfId.length === 9) {
+                this.disabled = false;
             }
         },
         entryErrorTick: function (){
             if (this.entryId.length > 10) {
+                this.disabled = true;
                 return {
                     errorTick: true
                 }
+            } else if (this.entryId.length === 10) {
+                this.disabled = false;
             }
         },
         entryTick: function (){
@@ -60,9 +71,6 @@ let introModal = new Vue({
         }
     }
 });
-console.log(introModal);
 
-// 2-Way bindings function
-// function changePartner(){
-//     introModal.message1 = "Changed! two-way-binding";
-// }
+
+console.log(introModal);
