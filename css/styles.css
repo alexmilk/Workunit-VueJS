@@ -13,7 +13,13 @@ body {
 .classRed {
     background-color: #ff2c10 !important;
 }
-.classTick {
+.partnerGreenTick {
+    display: block !important;
+}
+.playerGreenTick {
+    display: block !important;
+}
+.entryGreenTick {
     display: block !important;
 }
 .errorTick {

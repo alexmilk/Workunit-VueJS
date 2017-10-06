@@ -7,10 +7,10 @@ let introModal = new Vue({
         message1: 'Partner Id:',
         message2: 'Player Id:',
         message3: 'Entry Id:',
-        classGreen: false,
-        classRed: false,
-        classTick: false,
-        disabled: false,
+        partnerGreenTick: false,
+        playerGreenTick: false,
+        entryGreenTick: false,
+        disabled: true,
         errorTick: false,
         partnerId: '',
         uiconfId: '',
@@ -19,54 +19,51 @@ let introModal = new Vue({
     computed: {
         partnerErrorTick: function () {
             if (this.partnerId.length >= 8) {
-                this.disabled = true;
                 return {
                     errorTick: true,
-                    disabled: true
                 }
-            } else if (this.partnerId.length === 8) {
-                this.disabled = false;
             }
         },
         partnerTick: function () {
             if (this.partnerId.length === 7) {
                 return {
-                    classTick: true
+                    partnerGreenTick: true
                 }
             }
         },
         playerTick: function () {
             if (this.uiconfId.length === 8) {
                 return {
-                    classTick: true
+                    playerGreenTick: true
                 }
             }
         },
         playerErrorTick: function () {
             if (this.uiconfId.length >= 9) {
-                this.disabled = true;
                 return {
                     errorTick: true
                 }
-            } else if (this.uiconfId.length === 9) {
-                this.disabled = false;
             }
         },
         entryErrorTick: function (){
             if (this.entryId.length > 10) {
-                this.disabled = true;
                 return {
                     errorTick: true
                 }
-            } else if (this.entryId.length === 10) {
-                this.disabled = false;
             }
         },
         entryTick: function (){
             if (this.entryId.length === 10) {
                 return {
-                    classTick: true
+                    entryGreenTick: true
                 }
+            }
+        },
+        checkDisable: function (){
+            if (this.partnerId.length === 7 && this.entryId.length === 10 && this.uiconfId.length === 8 ) {
+                return false
+            } else {
+                return true
             }
         }
     }
