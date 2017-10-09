@@ -1,6 +1,8 @@
 /**
  * Created by alex.milkis on 30/09/2017.
  */
+
+
 let introModal = new Vue({
     el: '.modal-dialog',
     data: {

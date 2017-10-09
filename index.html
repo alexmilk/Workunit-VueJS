@@ -20,6 +20,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
     <script src="https://unpkg.com/vue"></script>
+    <script src="Components/introModal.js"></script>
 </head>
 
 <body>
@@ -91,7 +92,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="modal-footer"><h5 class="pull-left">Leaving blank values will load defaults.</h5>
+            <div class="modal-footer"><notification></notification>
                 <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
                 <button id="loadDefaults" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
             </div>
