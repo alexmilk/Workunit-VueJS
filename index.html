@@ -35,6 +35,9 @@
     function hideModal() {
         $('#myModal').modal('hide');
     }
+    alertSecure = () => {
+        $('.modal-footer').prepend("<h5 class=pull-left>Make sure youre running secure.</h5>");
+    }
     /*If we want to disable the submit button until we have valid user input then execute the following -
     1. Add event listener to the input of all fields and check for length
     2. If length criteria is met then remove the 'disabled' attribute from the submit button'
@@ -89,6 +92,10 @@
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useCdnEmbed">
                             <span class="label label-primary">Use CDN embed</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed">
+                            <span class="label label-danger">Use secure embed</span></td>
                     </tr>
                 </table>
             </div>
