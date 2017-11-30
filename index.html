@@ -36,10 +36,10 @@
     function hideModal() {
         $('#myModal').modal('hide');
     }
+    var invoked = false;
     alertSecure = () => {
-        var invoked = false;
-            if (!invoked) {
-        $('#modalNotifications').append("<h5 class=pull-left>Make sure youre running secure.</h5>");
+        if (!invoked) {
+        $('#modalNotifications').append("<h5 style='color: red'>Please make sure the server is running SSL</h5>");
         invoked = true;
         }
     }
@@ -91,7 +91,7 @@
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed" checked>
-                            <span class="label label-primary">Use Local embed</span>
+                            <span class="label label-primary">Use local embed</span>
                         </td>
                     </tr>
                     <tr>
@@ -104,7 +104,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="modal-footer"><notification id="modalNotifications"></notification>
+            <div class="modal-footer"><notification id="modalNotifications" style="text-align: left;"></notification>
                 <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
                 <button id="loadDefaults" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
             </div>
