@@ -81,7 +81,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <h5 style='color: red; display: none; text-align: left' id='sslAlert'>Please make sure the server is running SSL</h5>
+                <h5 style='color: red; display: none; text-align: left' id='sslAlert'>Please make sure the server is running on SSL</h5>
                 <notification id="modalNotifications" style="text-align: left;"></notification>
                 <br>
                 <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
@@ -182,7 +182,7 @@
 </div>
 <!--Control panel & buttons DIV-->
 <div style="clear: both;"></div>
-<div id="mainControlDiv">
+<div id="mainControlDiv" class="well">
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-xs" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doPlay()>Force Play</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doStop()>Force Stop</button>
@@ -207,7 +207,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
-    <div id="customEmbedParams" class="well">
+    <div id="customEmbedParams" class="well well-sm">
         <p>Please enter valid embed settings:</p>
         <form onsubmit="return false;">
             <input id="selectLocal" type="radio" name="ib" checked style="width: 16px; height: 15px; margin-right: 3px;"/><span class="label label-primary">Use Local embed</span><br>
@@ -217,11 +217,12 @@
             <input id="uiconfId" class="inputBox" style="margin-bottom: 5px;" placeholder="Player Id"/><br>
             <input id="entryId" class="inputBox" type="text" placeholder="Entry Id"/>
             <input onclick="buildPath()" class="btn btn-primary btn-xs" style="width: 100px;" type="submit"/>
-            <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
-                <option selected disabled>Select a plugin preset</option>
-            </select>
         </form>
         <textarea class="uivarsOverride" placeholder="Add valid flashvars:"></textarea>
+        <h7>Plugin selector:</h7>
+        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
+            <option selected disabled>Select a plugin preset</option>
+        </select>
     </div>
 </div><br>
 <!--JSON Config DIV-->
@@ -257,6 +258,7 @@
             cleanPreviousErrors();
         };
         //Simple player commands.
+        let kdp;
         doPlay = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay');
         doStop = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop');
         cleanMedia = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("cleanMedia");
@@ -269,10 +271,10 @@
         //Entry changer
         changeEmbed = () => {
             if ($('#customEmbedParams').css("display") == "none") {
-                $("#customEmbedParams").slideToggle(500);
+                $("#customEmbedParams").slideToggle(200);
             }
             else {
-                $("#customEmbedParams").slideToggle(500);
+                $("#customEmbedParams").slideToggle(200);
             }
         };
         cleanPreviousErrors = () => {
@@ -435,10 +437,13 @@
         //Open tinyUrl button
         tiny = () => {
             let url = "http://tinyurl.com/api-create.php?url=" + $(location).attr('href') + $(location).attr('search');
-            $.get(url, function(data) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*');},
+                success: function() {
                 $("#appendStats").append("<h5>" + data + "</h5>");
-            })
-        };
+            }})};
     </script>
     <script>
         var runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
