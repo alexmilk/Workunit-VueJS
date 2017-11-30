@@ -25,6 +25,7 @@
 
 <body>
 <script type="text/javascript">
+    //Modal functions
     $(window).on('load',function() {
         $.getScript( "js/vueApp.js", function( data, textStatus, jqxhr ) {
             console.log("Vue.js load status: " + textStatus + " " + jqxhr.status); // Success});
@@ -36,7 +37,11 @@
         $('#myModal').modal('hide');
     }
     alertSecure = () => {
-        $('.modal-footer').prepend("<h5 class=pull-left>Make sure youre running secure.</h5>");
+        var invoked = false;
+            if (!invoked) {
+        $('#modalNotifications').append("<h5 class=pull-left>Make sure youre running secure.</h5>");
+        invoked = true;
+        }
     }
     /*If we want to disable the submit button until we have valid user input then execute the following -
     1. Add event listener to the input of all fields and check for length
@@ -94,12 +99,12 @@
                             <span class="label label-primary">Use CDN embed</span></td>
                     </tr>
                     <tr>
-                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed">
+                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed" onchange="alertSecure()">
                             <span class="label label-danger">Use secure embed</span></td>
                     </tr>
                 </table>
             </div>
-            <div class="modal-footer"><notification></notification>
+            <div class="modal-footer"><notification id="modalNotifications"></notification>
                 <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
                 <button id="loadDefaults" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
             </div>
