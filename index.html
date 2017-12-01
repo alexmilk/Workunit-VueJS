@@ -182,7 +182,7 @@
         <h6 id="uiconfText" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
         <h6 id="entryIdText" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
         <h6 id="loadTime" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
-        <hr class="style11" style="display: inherit">
+        <hr class="style13" style="display: inherit">
         <h6 id="appVersion" style="color: #3b3a40"></h6>
     </div>
     <div class="containerRight">
@@ -202,17 +202,17 @@
     <!--Small analytics log DIV-->
     <pre id="appendStats"></pre>
     <div style="clear: both;"></div>
-    <button class="btn btn-basic btn-xs pull-right" style="margin: 5px; margin-right: 0" id="clearStats" onclick="cleanMonitor()">Clear monitor</button>
 </div>
 <!--Control panel & buttons DIV-->
 <div style="clear: both;"></div>
-<div id="mainControlDiv">
+<div id="mainControlDiv" style="margin-top: 15px">
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-xs" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doPlay()>Force Play</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doStop()>Force Stop</button>
     <button type="button" id="getSource" class="btn btn-primary btn-xs">get Sources</button>
     <button type="button" id="getCaptions" class="btn btn-primary btn-xs">get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-xs" onclick="tiny()">get TinyUrl</button>
+    <button class="btn btn-basic btn-xs pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();cleanPreviousErrors();" class="btn btn-primary btn-xs" style="float: left;">Reload player</button>
 
     <br><h7 style="font-family: Arial; font-size: smaller;">Entry ID changer:</h7>
