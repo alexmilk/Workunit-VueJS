@@ -263,7 +263,7 @@
                 </tr>
             </table>
         </form>
-        <textarea class="form-control" style="margin-bottom: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
+        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
         <h7>Plugin selector:</h7>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
@@ -473,7 +473,7 @@
         appendPlugin = (event) => {
             let selectors = {
                 prop: $(event.target).val(),
-                varsDiv: $(".uivarsOverride")
+                varsDiv: $("#uivarsOverride")
             };
             selectors.varsDiv.val(JSON.stringify(plugins[selectors.prop].json, null, 2));
             selectors.varsDiv.focus();
