@@ -155,11 +155,16 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             No embed params were given, please reload the page.
         </div>
-        <h2 id="pageTitle"></h2>
-        <h6 id="uiconfText"></h6>
-        <h6 id="entryIdText"></h6>
-        <h6 id="loadTime"></h6>
-        <h6 id="appVersion"></h6>
+        <tr>
+            <td>
+                <h2 id="pageTitle" style="color: #3b3a40"></h2>
+            </td>
+        </tr>
+        <h6 id="uiconfText" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
+        <h6 id="entryIdText" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
+        <h6 id="loadTime" style="margin: 0" class="badge badge-pill badge-secondary"></h6>
+        <hr class="style11" style="display: inherit">
+        <h6 id="appVersion" style="color: #3b3a40"></h6>
     </div>
     <div class="containerRight">
         <!--QRCode Generator - Google Charts-->
@@ -182,7 +187,7 @@
 </div>
 <!--Control panel & buttons DIV-->
 <div style="clear: both;"></div>
-<div id="mainControlDiv" class="well">
+<div id="mainControlDiv">
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-xs" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doPlay()>Force Play</button>
     <button type="button" class="btn btn-primary btn-xs" onclick=doStop()>Force Stop</button>
@@ -200,29 +205,39 @@
     <input class="inputBox" style="width: 300px;" type="text" oninput="showReloadWarning()" id="adTagId" />
     <button type="button" class="btn btn-primary btn-xs" style="margin: 0;" onclick=checkAdTag()>Check adtag
     </button>
-    <select id="adSlotSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendSlot(event)">
+    <select id="adSlotSelector" style="width: 200px !important; display: inline;" class="form-control is-valid" name="adPresetSelector" size="1" onchange="appendSlot(event)">
         <option selected disabled>Select sample ad tag</option>
     </select>
     <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
-    <div id="customEmbedParams" class="well well-sm">
+    <div id="customEmbedParams" class="well well-sm" style="padding-right: 32px">
         <p>Please enter valid embed settings:</p>
         <form onsubmit="return false;">
-            <input id="selectLocal" type="radio" name="ib" checked style="width: 16px; height: 15px; margin-right: 3px;"/><span class="label label-primary">Use Local embed</span><br>
-            <input id="selectCdn" type="radio" name="ib" style="width: 16px; height: 16px; margin-right: 3px;"/><span class="label label-primary">Use CDN embed</span><br>
-            <input id="selectSecure" type="radio" name="ib" style="width: 16px; height: 16px; margin-right: 3px; margin-bottom: 15px"/><span class="label label-primary">Use Secure embed</span><br>
-            <input id="partnerId" class="inputBox" type="text" style="margin-bottom: 5px;" placeholder="Partner Id"/><br>
-            <input id="uiconfId" class="inputBox" style="margin-bottom: 5px;" placeholder="Player Id"/><br>
-            <input id="entryId" class="inputBox" type="text" placeholder="Entry Id"/>
-            <input onclick="buildPath()" class="btn btn-primary btn-xs" style="width: 100px;" type="submit"/>
+            <table style="width: 250px; height: 190px">
+                <tr>
+                    <td>
+            <input id="selectLocal" class="radioSelector" type="radio" name="ib" checked/><span class="label label-primary">Use Local embed</span><br>
+            <input id="selectCdn" class="radioSelector" type="radio" name="ib"/><span class="label label-primary">Use CDN embed</span><br>
+            <input id="selectSecure" class="radioSelector" type="radio" name="ib"/><span class="label label-primary">Use Secure embed</span><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+            <input id="partnerId" class="form-control" style="width: 150px; display: inline-block" placeholder="Partner Id"/><br>
+            <input id="uiconfId" class="form-control" style="width: 150px; display: inline-block" placeholder="Player Id"/><br>
+            <input id="entryId" class="form-control" style="width: 150px;" type="text" placeholder="Entry Id"/>
+                    </td>
+                </tr>
+            </table>
         </form>
         <textarea class="uivarsOverride" placeholder="Add valid flashvars:"></textarea>
         <h7>Plugin selector:</h7>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
-        </select>
+        </select> <input onclick="buildPath()" class="btn btn-primary btn-xs pull-right" style="width: 100px; display: inline;" type="submit"/>
+
     </div>
 </div><br>
 <!--JSON Config DIV-->
@@ -231,7 +246,7 @@
     <pre id="appendJSON"></pre>
     <div id="analyticsLog" style="float: right; box-sizing: border-box;">
     </div>
-    <script>
+        <script>
         showModalErr = () => {
         $('#noEmbedInput').fadeIn(500);
         };
