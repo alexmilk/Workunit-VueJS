@@ -482,7 +482,7 @@
         showReloadWarning = () => $("#updateNotification").fadeIn(500);
         //Open tinyUrl button
         tiny = () => {
-            let url = "http://tinyurl.com/api-create.php?url=" + $(location).attr('href') + $(location).attr('search');
+            let url = "https://tinyurl.com/api-create.php?url=" + $(location).attr('href') + $(location).attr('search');
             $.ajax({
                 url: url,
                 type: "GET",
