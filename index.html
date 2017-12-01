@@ -30,7 +30,6 @@
 </div>
 <div class="fade" id="fadeModal">
 </div>
-
 <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -46,24 +45,31 @@
                         <col style="background-color:white">
                     </colgroup>
                     <tr>
-                        <td><h5 v-text="message1"></h5></td>
+                        <td>
+                            <h5 v-text="message1"></h5>
+                        </td>
                         <td><input class="form-control" id="partnerPrototype" style="margin-left: -20px;" type="text" placeholder="1666321" v-model="partnerId"/>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="partnerTick"/>
                             <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="partnerErrorTick"/>
-                    </td>
+                        </td>
                     </tr>
                     <tr>
-                        <td><h5 v-text="message2"></h5></td>
+                        <td>
+                            <h5 v-text="message2"></h5>
+                        </td>
                         <td><input class='form-control' id="playerPrototype" style="margin-left: -20px;" type="text" placeholder="39120681" v-model="uiconfId"/></td>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="playerTick"/>
                             <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="playerErrorTick"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><h5 v-text="message3"></h5></td>
+                        <td>
+                            <h5 v-text="message3"></h5>
+                        </td>
                         <td><input class='form-control'  id="entryPrototype" style="margin-left: -20px;" type="text" placeholder="0_kjb4gz27" v-model="entryId"/></td>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="entryTick"/>
-                            <img src="images/error.png" alt="Check your entry id" width="25" height="25" style="display: none" v-bind:class="entryErrorTick"/></td>
+                            <img src="images/error.png" alt="Check your entry id" width="25" height="25" style="display: none" v-bind:class="entryErrorTick"/>
+                        </td>
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed" checked>
@@ -72,11 +78,13 @@
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useCdnEmbed" onchange="removeAlert()">
-                            <span class="label label-primary">Use CDN embed</span></td>
+                            <span class="label label-primary">Use CDN embed</span>
+                        </td>
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed" onchange="alertSecure()">
-                            <span class="label label-danger">Use secure embed</span></td>
+                            <span class="label label-danger">Use secure embed</span>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -155,10 +163,10 @@
                 </div>
             </form>
             <!--<form class="navbar-form navbar-right" role="search" style="padding: 0 !important;">-->
-                <!--<div class="form-group">-->
-                    <!--<input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">-->
-                <!--</div>-->
-                <!--<button type="submit" class="btn btn-default" onclick="vpaasSearch()">Submit</button>-->
+            <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">-->
+            <!--</div>-->
+            <!--<button type="submit" class="btn btn-default" onclick="vpaasSearch()">Submit</button>-->
             <!--</form>-->
         </div>
     </div>
@@ -214,19 +222,25 @@
     <button type="button" id="getTiny" class="btn btn-primary btn-xs" onclick="tiny()">get TinyUrl</button>
     <button class="btn btn-basic btn-xs pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();cleanPreviousErrors();" class="btn btn-primary btn-xs" style="float: left;">Reload player</button>
-
-    <br><h7 style="font-family: Arial; font-size: smaller;">Entry ID changer:</h7>
-    <form style="margin-top: 5px" id="formEntry" onsubmit="return false;">
-        <input class="inputBox" style="width: 300px;" type="text" id="adInput" placeholder="Input entry id"/>
-        <input class="btn btn-primary btn-xs" onclick="setEntry();" type="submit"/>
+    <form class="navbar-form" style="padding: 0px">
+        <div class="input-group">
+            <input type="text" class="form-control" id="searchInput" placeholder="Media Changer" style="width: 202px !important;">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" onclick="setEntry();">
+                    GO!
+                </button>
+            </div>
+        </div>
     </form>
-    <h7 style="font-family: Arial; font-size: smaller; margin-bottom: 5px;">DoubleClick ad tag:</h7><br>
-    <input class="inputBox" style="width: 300px;" type="text" oninput="showReloadWarning()" id="adTagId" />
-    <button type="button" class="btn btn-primary btn-xs" style="margin: 0;" onclick=checkAdTag()>Check adtag
-    </button>
-    <select id="adSlotSelector" style="width: 200px !important; display: inline;" class="form-control is-valid" name="adPresetSelector" size="1" onchange="appendSlot(event)">
-        <option selected disabled>Select sample ad tag</option>
-    </select>
+    <form class="navbar-form" style="padding: 0px; display: inline;" id="formAd">
+        <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
+        <select id="adSlotSelector" style="width: 200px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="appendSlot(event)">
+            <option selected disabled>Select sample ad tag</option>
+        </select>
+        <button class="btn btn-default" type="submit" onclick="checkAdTag()">
+            GO!
+        </button>
+    </form>
     <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
@@ -257,8 +271,8 @@
                         <p>Please choose embed method:</p>
                         <hr style="margin: 5px">
                         <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline;" checked/><span class="label label-primary">Use Local embed</span>
-            <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use CDN embed</span>
-            <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use Secure embed</span><br>
+                        <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use CDN embed</span>
+                        <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use Secure embed</span><br>
                     </td>
                 </tr>
             </table>
@@ -267,8 +281,8 @@
         <h7>Plugin selector:</h7>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
-        </select> <input onclick="buildPath()" class="btn btn-primary btn-xs pull-right" style="width: 100px; display: inline;" type="submit"/>
-
+        </select>
+        <input onclick="buildPath()" class="btn btn-primary btn-xs pull-right" style="width: 100px; display: inline;" type="submit"/>
     </div>
 </div><br>
 <!--JSON Config DIV-->
@@ -312,7 +326,6 @@
         checkAdTag = () => {
             let adInput = $('#adTagId').val();
             window.open(adInput);
-            return false;
         };
         //Entry changer
         changeEmbed = () => {

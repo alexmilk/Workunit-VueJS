@@ -1,6 +1,12 @@
 body {
     margin: 0;
-    background-color: white !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ededed+0,dddddd+17,fcfcfc+26,ffffff+100 */
+    background: #ededed; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ededed 0%, #dddddd 17%, #fcfcfc 26%, #ffffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ededed 0%,#dddddd 17%,#fcfcfc 26%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ededed 0%,#dddddd 17%,#fcfcfc 26%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
 }
 .center-block {
     display: block;
@@ -227,13 +233,13 @@ body {
 #mainControlDiv {
     width: 1125px;
     height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1), 0 -1px 8px 0 rgba(0, 0, 0, 0.1);
     margin: auto;
     display: none;
     text-align: left;
     background-color: #f5f5f5;
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px;
     box-sizing: border-box;
 }
 #topHeaderDiv {
@@ -258,7 +264,7 @@ body {
     width: 560px;
     height: 320px;
     float: left;
-    border: 1px solid black;
+    border: 1px solid #9f9f9d;
     box-sizing: border-box;
     border-radius: 4px;
 }
