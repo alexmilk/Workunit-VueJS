@@ -90,58 +90,77 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-inverse" style="min-height:32px !important; top: 0 !important; border-radius: 0 !important; position: fixed !important; z-index: 1000 !important; width: 100% !important;">
-    <div style="float: left">
-        <a class="dropbtn">Home</a>
-        <div class="dropdown">
-            <button class="dropbtn">Player Functions</button>
-            <div class="dropdown-content">
-                <a onclick="buildPath();cleanPreviousErrors();">Reload player</a>
-                <a href="#" id="getActiveSource" onclick="getActiveSource()">Download active flavor</a>
-                <a onclick="getActiveBitrate()">Get Current Bitrate (Chrome/Firefox Only)</a>
-                <a onclick="getYouboraAnalytics()">Track Youbora Analytics</a>
-                <a onclick="getGoogleAnalytics()">Track Google Analytics</a>
-                <a onclick="getGoogleAnalytics()">Track Google Analytics</a>
-            </div>
+<nav class="navbar navbar-default" style="position: relative !important;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand glyphicon glyphicon-home" href="#"></a>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">Video Debugging Tools</button>
-            <div class="dropdown-content">
-                <a href="#">Get video aspect ratio</a>
-                <a href="https://shaka-player-demo.appspot.com/demo/" target="_blank">Standalone Dash Shaka player</a>
-                <a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a>
-                <a href="http://players.akamai.com/hds/" target="_blank">Standalone Akamai HDS player</a>
-                <a href="http://players.akamai.com/hls/" target="_blank">Standalone Akamai HLS player</a>
-            </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Player Functions<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a onclick="buildPath();cleanPreviousErrors();">Reload Player</a></li>
+                        <li><a id="getActiveSource" onclick="getActiveSource()">Download current flavor</a></li>
+                        <li><a onclick="getActiveBitrate()">Get Current Bitrate (Chrome/Firefox Only)</a></li>
+                        <li><a onclick="getYouboraAnalytics()">Track Youbora Analytics</a></li>
+                        <li><a onclick="getGoogleAnalytics()">Track Google Analytics</a>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Video debugging<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Get video aspect ratio</a></li>
+                        <li><a href="https://shaka-player-demo.appspot.com/demo/" target="_blank">Standalone Dash Shaka player</a></li>
+                        <li><a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a></li>
+                        <li><a href="http://players.akamai.com/hds/" target="_blank">Standalone Akamai HDS player</a></li>
+                        <li><a href="http://players.akamai.com/hls/" target="_blank">Standalone Akamai HLS player</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ad debugging<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="testOnVast" onclick="goToVast()">Test on Google VAST inspector</a></li>
+                        <li><a href="https://i.loopme.me/html/vpaid/test-page.html" target="_blank">VPAID ad tester</a></li>
+                        <li><a href="http://tagvalidator.videohub.tv/?adtag=&playerType=jwPlayer&playerSize=640x360&adtagType=&adChoicesOverlay=off" target="_blank">VideoHub ad tester</a></li>
+                        <li><a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a></li>
+                        <li><a href="http://www.zedo.com/vastvalidator/" target="_blank">Zedo ad tester</a></li>
+                        <li><a href="https://www.spotx.tv/tag-generator/" target="_blank">SPOTX Tag Generator</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UI Tools<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" id="cleanMedia()">Unload video asset</a></li>
+                        <li><a href="#" id="removeThumb">Remove Thumbnail</a></li>
+                        <li><a href="#" id="removePlay">Remove play button</a></li>
+                        <li><a href="#" id="hideControls">Hide controls bar</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" style="padding: 0px">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit" onclick="vpaasSearch()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--<form class="navbar-form navbar-right" role="search" style="padding: 0 !important;">-->
+                <!--<div class="form-group">-->
+                    <!--<input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">-->
+                <!--</div>-->
+                <!--<button type="submit" class="btn btn-default" onclick="vpaasSearch()">Submit</button>-->
+            <!--</form>-->
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">Ad Debugging Tools</button>
-            <div class="dropdown-content">
-                <a href="#" id="testOnVast" onclick="goToVast()">Test on Google VAST inspector</a>
-                <a href="https://i.loopme.me/html/vpaid/test-page.html" target="_blank">VPAID ad tester</a>
-                <a href="http://tagvalidator.videohub.tv/?adtag=&playerType=jwPlayer&playerSize=640x360&adtagType=&adChoicesOverlay=off" target="_blank">VideoHub ad tester</a>
-                <a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a>
-                <a href="http://www.zedo.com/vastvalidator/" target="_blank">Zedo ad tester</a>
-                <a href="https://www.spotx.tv/tag-generator/" target="_blank">SPOTX Tag Generator</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">UI Commands</button>
-            <div class="dropdown-content">
-                <a href="#" id="cleanMedia()">Unload video asset</a>
-                <a href="#" id="removeThumb">Remove Thumbnail</a>
-                <a href="#" id="removePlay">Remove play button</a>
-                <a href="#" id="hideControls">Hide controls bar</a>
-            </div>
-        </div>
-    </div>
-    <div style="float: right; height: 25px; width: 600px; padding-right: 20px; padding-top: 2px">
-        <form class="form-inline pull-right">
-            <div class="form-group">
-                <input type="search" class="form-control input-sm" style="height: 19px !important;" id="searchInput" placeholder="Search VPaaS">
-            </div>
-            <button type="submit" class="btn btn-default btn-xs" style="height: 19px !important; margin-top: 2px" onclick="vpaasSearch()">Search</button>
-        </form>
     </div>
 </nav>
 <div class="alert alert-danger alert-dismissible center-block" id="noEmbedInput" role="alert" style="display: none; width: 450px; margin-top: 5px;">
@@ -212,27 +231,39 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
-    <div id="customEmbedParams" class="well well-sm" style="padding-right: 32px">
-        <p>Please enter valid embed settings:</p>
-        <form onsubmit="return false;">
-            <table style="width: 250px; height: 190px">
+    <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
+        <p>Please enter valid embed params:</p>
+        <hr style="margin: 5px">
+        <form onsubmit="return false;" class="form-horizontal">
+            <table style="width: 370px; height: 190px">
                 <tr>
                     <td>
-            <input id="selectLocal" class="radioSelector" type="radio" name="ib" checked/><span class="label label-primary">Use Local embed</span><br>
-            <input id="selectCdn" class="radioSelector" type="radio" name="ib"/><span class="label label-primary">Use CDN embed</span><br>
-            <input id="selectSecure" class="radioSelector" type="radio" name="ib"/><span class="label label-primary">Use Secure embed</span><br>
+                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                            <span class="input-group-addon" style="width: 63px">Partner ID</span>
+                            <input id="partnerId" type="text" class="form-control" name="partner">
+                        </div>
+                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                            <span class="input-group-addon" style="width: 88px">Player ID</span>
+                            <input id="uiconfId" type="text" class="form-control" name="partner">
+                        </div>
+                        <div class="input-group" style="width: 250px">
+                            <span class="input-group-addon" style="width: 88px">Entry ID</span>
+                            <input id="entryId" type="text" class="form-control" name="partner">
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-            <input id="partnerId" class="form-control" style="width: 150px; display: inline-block" placeholder="Partner Id"/><br>
-            <input id="uiconfId" class="form-control" style="width: 150px; display: inline-block" placeholder="Player Id"/><br>
-            <input id="entryId" class="form-control" style="width: 150px;" type="text" placeholder="Entry Id"/>
+                        <p>Please choose embed method:</p>
+                        <hr style="margin: 5px">
+                        <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline;" checked/><span class="label label-primary">Use Local embed</span>
+            <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use CDN embed</span>
+            <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use Secure embed</span><br>
                     </td>
                 </tr>
             </table>
         </form>
-        <textarea class="uivarsOverride" placeholder="Add valid flashvars:"></textarea>
+        <textarea class="form-control" style="margin-bottom: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
         <h7>Plugin selector:</h7>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
@@ -480,6 +511,9 @@
                     path = radioInputs[i].id;
                 }
             }
+            // path = 'http://kgit.html5video.org/'+coreVer+'/mwEmbedLoader.php'+"/uiconf_id/"+$('#uiconf').val()+"/partner_id/"+$('#partnerId').val()+"/"+psVer
+            // Future development core tag
+
             var endPoint;
             switch (path) {
                 case "selectLocal":
