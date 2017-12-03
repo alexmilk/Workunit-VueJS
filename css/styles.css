@@ -332,7 +332,7 @@ body {
     padding-bottom: 5px;
     box-sizing: border-box;
 }
-pre {
+.pre {
     white-space: pre-wrap;       /* css-3 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
 }
@@ -344,3 +344,4 @@ hr.style13 {
     background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
     background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
 }
+
