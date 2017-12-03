@@ -12,6 +12,8 @@ $(window).on('load', function () {
         localEmbedRadio.disabled = true;
         cdnEmbedRadio.disabled = true;
         secureEmbedRadio.checked = true;
+    } else {
+        localEmbedRadio.checked = true
     }
 
 });
