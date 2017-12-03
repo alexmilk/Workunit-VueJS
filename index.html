@@ -23,7 +23,7 @@
     <script src="Components/introModal.js"></script>
 </head>
 
-<body>
+<body bgproperties="fixed">
 <script type="text/javascript" src="js/modal.js"></script>
 <div id="errorBar" style="padding-left: 10px">
     <h4></h4><button class="btn btn-default btn-xs" id="okError" style="float: left; margin-top: 3px; margin-left: 10px;">OK</button>
@@ -530,6 +530,8 @@
             var endPoint;
             switch (path) {
                 case "selectLocal":
+
+                    endPoint = `/meEmbed/${partner}/sp/${partner}`;
                     endPoint = '/mwEmbed/mwEmbedLoader.php/p/' + partner + '/sp/' + partner +
                         '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
                     break;
