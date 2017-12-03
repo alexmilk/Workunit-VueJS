@@ -5,17 +5,6 @@ $(window).on('load', function () {
     });
     $('#topHeaderDiv, #appendStats, #kPlayer_ifp, #mainControlDiv').fadeIn(400);
     $('#myModal').modal('show');
-    let localEmbedRadio = document.getElementById("useLocalEmbed");
-    let cdnEmbedRadio = document.getElementById("useCdnEmbed");
-    let secureEmbedRadio = document.getElementById("useSecureEmbed");
-    if (window.location.protocol === 'https:') {
-        localEmbedRadio.disabled = true;
-        cdnEmbedRadio.disabled = true;
-        secureEmbedRadio.checked = true;
-    } else {
-        localEmbedRadio.checked = true
-    }
-
 });
 function hideModal() {
     $('#myModal').modal('hide');

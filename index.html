@@ -726,6 +726,23 @@
 <div style="clear: both;"></div>
 <div id="footer">
     <p id="footer p" style="margin: 0 !important;">Created by Alex Milkis. Kaltura Customer Care 2017 &copy;</p></div>
+<script>
+    $(window).on('load', function () {
+        let radioConfigs = {
+            "localEmbedRadio": document.getElementById("useLocalEmbed"),
+            "cdnEmbedRadio": document.getElementById("useCdnEmbed"),
+            "secureEmbedRadio": document.getElementById("useSecureEmbed")
+        };
+        if (window.location.protocol === 'https:') {
+            radioConfigs.localEmbedRadio.disabled = true;
+            radioConfigs.cdnEmbedRadio.disabled = true;
+            radioConfigs.secureEmbedRadio.setAttribute("checked", "");
+        } else {
+            radioConfigs.localEmbedRadio.setAttribute("checked", "");
+            radioConfigs.secureEmbedRadio.disabled = true;
+        }
+    });
+</script>
 
 </body>
 
