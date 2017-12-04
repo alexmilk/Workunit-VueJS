@@ -106,7 +106,7 @@ body {
 }
 /* Links inside the navbar */
 #customEmbedParams {
-    width: 605px;
+    width: 1105px;
     margin-top: 15px;
     text-align: left;
     /*padding: 10px;*/
@@ -115,8 +115,6 @@ body {
 #uivarsOverride {
     width: 750px !important;
     height: 270px;
-    margin-top: 10px;
-    max-width: 550px;
     max-height: 400px;
     color: black;
 }

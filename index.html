@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 
-<!-- mwDebuggerUnit for the Kaltura player -->
-<!-- Version 2.0 -->
+<!-- mwDebuggerUnit based on Vue.JS for the Kaltura player -->
+<!-- Version 3.0 -->
 <!-- Copyright(c) 2017 Alex Milkis <alex.milkis@kaltura.com> -->
 <!-- MIT Licensed. http://www.opensource.org/licenses/mit-license.php -->
 <!-- http://corp.kaltura.com -->
@@ -162,12 +162,6 @@
                     </div>
                 </div>
             </form>
-            <!--<form class="navbar-form navbar-right" role="search" style="padding: 0 !important;">-->
-            <!--<div class="form-group">-->
-            <!--<input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">-->
-            <!--</div>-->
-            <!--<button type="submit" class="btn btn-default" onclick="vpaasSearch()">Submit</button>-->
-            <!--</form>-->
         </div>
     </div>
 </nav>
@@ -232,39 +226,42 @@
             </div>
         </div>
     </form>
-    <form class="navbar-form" style="padding: 0px; display: inline;" id="formAd">
+    <form class="navbar-form" style="padding: 0px; display: inline" id="formAd">
+        <div class="input-group">
         <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
-        <select id="adSlotSelector" style="width: 200px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="appendSlot(event)">
-            <option selected disabled>Select sample ad tag</option>
-        </select>
-        <button class="btn btn-default" type="submit" onclick="checkAdTag()">
-            GO!
-        </button>
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" onclick="checkAdTag()">
+                    GO!
+                </button>
+            </div>
+        </div>
     </form>
+    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="appendSlot(event)">
+        <option selected disabled>Select sample ad tag</option>
+    </select>
     <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
     <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
-        <p>Please enter valid embed params:</p>
-        <hr style="margin: 5px">
-        <form onsubmit="return false;" class="form-horizontal">
+        <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
+            <form onsubmit="return false;" class="form-horizontal">
             <table style="width: 370px; height: 190px">
                 <tr>
                     <td>
-                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
                             <span class="input-group-addon" style="width: 63px">Partner ID</span>
                             <input id="partnerId" type="text" class="form-control" name="partnerid">
                         </div>
-                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
                             <span class="input-group-addon" style="width: 88px">Player ID</span>
                             <input id="uiconfId" type="text" class="form-control" name="playerid">
                         </div>
-                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
                             <span class="input-group-addon" style="width: 88px">Entry ID</span>
                             <input id="entryId" type="text" class="form-control" name="entryid">
                         </div>
-                        <div class="input-group" style="width: 250px">
+                        <div class="input-group" style="width: 250px; margin-bottom: 10px;">
                             <span class="input-group-addon" style="width: 88px">KS</span>
                             <input id="ksInput" type="text" class="form-control" name="partnerks">
                         </div>
@@ -273,20 +270,23 @@
                 <tr>
                     <td>
                         <p>Please choose embed method:</p>
-                        <hr style="margin: 5px">
-                        <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline;" checked/><span class="label label-primary">Use Local embed</span>
-                        <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use CDN embed</span>
-                        <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline;"/><span class="label label-primary">Use Secure embed</span><br>
+                        <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span><br>
+                        <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline-block;"/><span class="label label-primary">Use CDN embed</span><br>
+                        <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline-block;"/><span class="label label-primary">Use Secure embed</span><br>
                     </td>
                 </tr>
             </table>
         </form>
-        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; margin-top: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
-        <h7>Plugin selector:</h7>
-        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
+        </div>
+        <div style="width: 700px; display: inline-block;">
+        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
+            <span>
+        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
         </select>
-        <input onclick="buildPath()" class="btn btn-primary btn-xs pull-right" style="width: 100px; display: inline;" type="submit"/>
+            </span>
+        <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit"/>
+        </div>
     </div>
 </div><br>
 <!--JSON Config DIV-->
@@ -512,13 +512,13 @@
         var runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
 
         //Custom embed code loader script.
-        function buildPath() {
+        let builtPath = function() {
             var partner = $('#partnerId').val();
-            if (partner.length <= 0) {
+            if (!partner) {
                 partner = "1666321";
             }
             var uiconf = $('#uiconfId').val();
-            if (uiconf.length <= 0) {
+            if (!uiconf) {
                 uiconf = "39120681";
             }
             var path;
@@ -534,58 +534,64 @@
             var endPoint;
             switch (path) {
                 case "selectLocal":
-
-                    endPoint = `/meEmbed/${partner}/sp/${partner}`;
                     endPoint = '/mwEmbed/mwEmbedLoader.php/p/' + partner + '/sp/' + partner +
                         '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
                     break;
                 case "selectCdn":
                     endPoint = 'http://cdnapi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner;
+                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
                     break;
                 case "selectSecure":
                     endPoint = 'https://cdnsecakmi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner;
+                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
             }
             $.getScript(endPoint, function(data, textStatus, jqxhr) {
                 if (jqxhr.status === 200) {
-                    reembedPlayer();
+                    loadUpdatedEmbed();
                 } else {
                     alert("Script failed to load. Cannot render player :(");
                 }
             });
         }
         //Reload player function
-        function reembedPlayer() {
+        let loadUpdatedEmbed = function() {
+            //The default configs for the player.
             mw.setConfig("EmbedPlayer.ShowPlayerAlerts", true);
             mw.setConfig("debug", true);
             mw.setConfig("debugTarget", "analyticsLog");
             mw.setConfig("autoScrollDebugTarget", true);
             mw.setConfig('Kaltura.EnableEmbedUiConfJs', true);
-            var partner = $('#partnerId').val();
-            if ($('#partnerId').val().length <= 0) {
+            //Get inputs from the embed fields.
+            let partner = $('#partnerId').val();
+            if (!partner) {
                 partner = "1666321";
             }
-            var uiconf = $('#uiconfId').val();
-            if ($('#uiconfId').val().length <= 0) {
+            let uiconf = $('#uiconfId').val();
+            if (!uiconf) {
                 uiconf = "39120681";
             }
-            var entry = $('#entryId').val();
-            if ($('#entryId').val().length <= 0) {
+            let entry = $('#entryId').val();
+            if (!entry) {
                 entry = "0_kjb4gz27";
             }
+            //Clean all runtime values on the page.
             runtimeFields.text('');
             $("#errorBar").slideUp(300);
             cleanPreviousErrors();
-            var str = $('.uivarsOverride').val();
+            //Check if we have any uivars and split.
+            let str = $('#uivarsOverride').val();
+            if (str) {
             str = str.split("\n").join('');
-            var myJson;
+            }
+            let myJson;
+            //Catches error for incorrect uivars.
             try {
                 myJson = str ? $.parseJSON(str) : {};
             } catch (error) {
                 alert('Please validate your JSON');
                 return;
             }
+            //The main embed object.
             const newEmbed = {
                 "targetId": "kPlayer_ifp",
                 "wid": "_" + partner,
@@ -602,21 +608,21 @@
         //The initial modal embed function, wrapped in var to prevent auto execution.
         let embedWidget = function() {
             //Player path defaults
-            let partner = $('#partnerPrototype').val();
-            if (partner.length === 0) {
-                partner = $('#partnerPrototype').attr('placeholder');
+            let partner = $("#partnerPrototype").val();
+            if (!partner) {
+                partner = $("#partnerPrototype").attr("placeholder");
             }
-            let uiconf = $('#playerPrototype').val();
-            if (uiconf.length === 0) {
-                uiconf = $('#playerPrototype').attr('placeholder');
+            let uiconf = $("#playerPrototype").val();
+            if (!uiconf) {
+                uiconf = $("#playerPrototype").attr("placeholder");
             }
-            let entryId = $('#entryPrototype').val();
-            if (entryId.length === 0) {
-                entryId = $('entryPrototype').attr('placeholder');
+            let entryId = $("#entryPrototype").val();
+            if (!entryId) {
+                entryId = $("entryPrototype").attr("placeholder");
             }
             let path;
             //Check which radio button was selected and define its ID to the path variable.
-            let radioInputs = $('#useCdnEmbed,#useLocalEmbed,#useSecureEmbed');
+            let radioInputs = $("#useCdnEmbed,#useLocalEmbed,#useSecureEmbed");
             for (let i = 0; i < radioInputs.length; i++) {
                 if (radioInputs[i].checked) {
                     path = radioInputs[i].id;
@@ -626,16 +632,16 @@
             let endPoint;
             switch (path) {
                 case "useLocalEmbed":
-                    endPoint = '/mwEmbed/mwEmbedLoader.php/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
+                    endPoint = "/mwEmbed/mwEmbedLoader.php/p/" + partner + "/sp/" + partner +
+                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner + "?&debug=true";
                     break;
                 case "useCdnEmbed":
-                    endPoint = 'http://cdnapi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner;
+                    endPoint = "http://cdnapi.kaltura.com/p/" + partner + "/sp/" + partner +
+                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner;
                     break;
                 case "useSecureEmbed":
-                    endPoint = 'https://cdnsecakmi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner;
+                    endPoint = "https://cdnsecakmi.kaltura.com/p/" + partner + "/sp/" + partner +
+                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner;
             }
             //The embed library getter script in order to execute the embed function.
             $.getScript(endPoint, function(data, textStatus, jqxhr) {
@@ -650,15 +656,15 @@
         let embed = function (){
             //Embed defaults
             let partnerPrototype = $('#partnerPrototype').val();
-            if (partnerPrototype.length <= 0) {
+            if (!partnerPrototype) {
                 partnerPrototype = "1666321";
             }
             let playerPrototype = $('#playerPrototype').val();
-            if (playerPrototype.length <= 0) {
+            if (!playerPrototype) {
                 playerPrototype = "39120681";
             }
             let entryPrototype = $('#entryPrototype').val();
-            if (entryPrototype.length <= 0) {
+            if (!entryPrototype) {
                 entryPrototype = "0_kjb4gz27";
             }
             cleanPreviousErrors();
