@@ -87,9 +87,9 @@
                         </td>
                     </tr>
                 </table>
+                <h5 style='color: red; display: none; text-align: left; font-size: x-small' id='sslAlert'>The page is using SSL, only secure embed is available.</h5>
             </div>
             <div class="modal-footer">
-                <h5 style='color: red; display: none; text-align: left' id='sslAlert'>Please make sure the server is running on SSL</h5>
                 <notification id="modalNotifications" style="text-align: left;"></notification>
                 <br>
                 <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
@@ -254,15 +254,19 @@
                     <td>
                         <div class="input-group" style="width: 250px; margin-bottom: 3px">
                             <span class="input-group-addon" style="width: 63px">Partner ID</span>
-                            <input id="partnerId" type="text" class="form-control" name="partner">
+                            <input id="partnerId" type="text" class="form-control" name="partnerid">
                         </div>
                         <div class="input-group" style="width: 250px; margin-bottom: 3px">
                             <span class="input-group-addon" style="width: 88px">Player ID</span>
-                            <input id="uiconfId" type="text" class="form-control" name="partner">
+                            <input id="uiconfId" type="text" class="form-control" name="playerid">
+                        </div>
+                        <div class="input-group" style="width: 250px; margin-bottom: 3px">
+                            <span class="input-group-addon" style="width: 88px">Entry ID</span>
+                            <input id="entryId" type="text" class="form-control" name="entryid">
                         </div>
                         <div class="input-group" style="width: 250px">
-                            <span class="input-group-addon" style="width: 88px">Entry ID</span>
-                            <input id="entryId" type="text" class="form-control" name="partner">
+                            <span class="input-group-addon" style="width: 88px">KS</span>
+                            <input id="ksInput" type="text" class="form-control" name="partnerks">
                         </div>
                     </td>
                 </tr>
@@ -277,7 +281,7 @@
                 </tr>
             </table>
         </form>
-        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
+        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; margin-top: 10px !important; height: 350px;" placeholder="Add valid flashvars:"></textarea>
         <h7>Plugin selector:</h7>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" size="1" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
@@ -737,6 +741,7 @@
             radioConfigs.localEmbedRadio.disabled = true;
             radioConfigs.cdnEmbedRadio.disabled = true;
             radioConfigs.secureEmbedRadio.setAttribute("checked", "");
+            $('#sslAlert').fadeIn(300);
         } else {
             radioConfigs.localEmbedRadio.setAttribute("checked", "");
             radioConfigs.secureEmbedRadio.disabled = true;
