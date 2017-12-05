@@ -16,13 +16,11 @@
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="Components/introModal.js"></script>
 </head>
-
 <body bgproperties="fixed">
 <script type="text/javascript" src="js/modal.js"></script>
 <div id="errorBar" style="padding-left: 10px">
@@ -246,28 +244,28 @@
     <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
         <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
             <form onsubmit="return false;" class="form-horizontal">
-            <table style="width: 370px; height: 190px">
-                <tr>
-                    <td>
-                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                            <span class="input-group-addon" style="width: 63px">Partner ID</span>
-                            <input id="partnerId" type="text" class="form-control" name="partnerid">
-                        </div>
-                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                            <span class="input-group-addon" style="width: 88px">Player ID</span>
-                            <input id="uiconfId" type="text" class="form-control" name="playerid">
-                        </div>
-                        <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                            <span class="input-group-addon" style="width: 88px">Entry ID</span>
-                            <input id="entryId" type="text" class="form-control" name="entryid">
-                        </div>
-                        <div class="input-group" style="width: 250px; margin-bottom: 10px;">
-                            <span class="input-group-addon" style="width: 88px">KS</span>
-                            <input id="ksInput" type="text" class="form-control" name="partnerks">
-                        </div>
+                <table style="width: 370px; height: 190px">
+                    <tr>
+                        <td>
+                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                <span class="input-group-addon" style="width: 63px">Partner ID</span>
+                                <input id="partnerId" type="text" class="form-control" name="partnerid">
+                            </div>
+                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                <span class="input-group-addon" style="width: 88px">Player ID</span>
+                                <input id="uiconfId" type="text" class="form-control" name="playerid">
+                            </div>
+                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                <span class="input-group-addon" style="width: 88px">Entry ID</span>
+                                <input id="entryId" type="text" class="form-control" name="entryid">
+                            </div>
+                            <div class="input-group" style="width: 250px; margin-bottom: 10px;">
+                                <span class="input-group-addon" style="width: 88px">KS</span>
+                                <input id="ksInput" type="text" class="form-control" name="partnerks">
+                            </div>
                     </td>
-                </tr>
-                <tr>
+                    </tr>
+                    <tr>
                     <td>
                         <p>Please choose embed method:</p>
                         <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span><br>
@@ -512,7 +510,7 @@
         var runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
 
         //Custom embed code loader script.
-        let builtPath = function() {
+        let buildPath = function() {
             var partner = $('#partnerId').val();
             if (!partner) {
                 partner = "1666321";
