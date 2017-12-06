@@ -143,7 +143,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UI Tools<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" id="cleanMedia()">Unload video asset</a></li>
+                        <li><a href="#" onclick="kdpFunctions.reload()">Reload video asset</a></li>
                         <li><a href="#" id="removeThumb">Remove Thumbnail</a></li>
                         <li><a href="#" id="removePlay">Remove play button</a></li>
                         <li><a href="#" id="hideControls">Hide controls bar</a></li>
@@ -207,12 +207,12 @@
 <div style="clear: both;"></div>
 <div id="mainControlDiv" style="margin-top: 15px">
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick=doPlay()>Force Play</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick=doStop()>Force Stop</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
     <button type="button" id="getSource" class="btn btn-primary btn-sm">get Sources</button>
     <button type="button" id="getCaptions" class="btn btn-primary btn-sm">get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="tiny()">get TinyUrl</button>
-    <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="cleanMonitor()">Clear monitor</button>
+    <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();cleanPreviousErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
         <div class="input-group">
@@ -228,7 +228,7 @@
         <div class="input-group">
         <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
             <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="checkAdTag()">
+                <button class="btn btn-default" type="submit" onclick="pageFunctions.checkAdTag(document.getElementById('adTagId').value)">
                     GO!
                 </button>
             </div>
@@ -319,16 +319,21 @@
             });
             cleanPreviousErrors();
         };
+
         //Simple player commands.
-        let kdp;
-        doPlay = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay');
-        doStop = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop');
-        cleanMedia = () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("cleanMedia");
-        cleanMonitor = () => $('#appendStats').text('');
-        checkAdTag = () => {
-            let adInput = $('#adTagId').val();
-            window.open(adInput);
+        let kdpFunctions = {
+            doPlay: () => {document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay')},
+            doStop: () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop'),
+            reload:  () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("doReplay"),
         };
+        const pageFunctions = {
+            checkAdTag: function(input) {
+                window.open(input)
+            },
+            cleanMonitor: () => $('#appendStats').text(''),
+
+        }
+
         //Entry changer
         changeEmbed = () => {
             if ($('#customEmbedParams').css("display") == "none") {
@@ -697,6 +702,7 @@
                         appVersionField: $("#appVersion"),
                         loadedTime: window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart
                     };
+                    let kdp = document.kPlayer_ifp_ifp.kPlayer_ifp;
                     runtimes.pageTitle.html(kdp.evaluate("{mediaProxy.entry.name}"));
                     runtimes.entryIdField.append(kdp.evaluate("Entry id: " + "{mediaProxy.entry.id}"));
                     runtimes.uiconfIdField.append(kdp.evaluate("Player id: " + "{configProxy.kw.uiConfId}"));
@@ -728,8 +734,8 @@
 
 <div style="width:1125px; height: auto; margin: 0 auto;">
     <div style="clear: both;"></div>
-    <button type="button" class="btn btn-primary btn-xs" style="float: right;" onclick=$("#analyticsLog").text('');>Clear log</button>
-    <button type="button" class="btn btn-primary btn-xs" onclick=downloadJSON()>Download JSON</button>
+    <button type="button" class="btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text('');>Clear log</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick=downloadJSON()>Download JSON</button>
 </div>
 <div style="clear: both;"></div>
 <div id="footer">
