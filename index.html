@@ -20,6 +20,7 @@
     <script src="js/plugins.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="Components/introModal.js"></script>
+    <script src="js/playerFunctions.js"></script>
 </head>
 <body bgproperties="fixed">
 <script type="text/javascript" src="js/modal.js"></script>
@@ -113,10 +114,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Player Functions<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a onclick="buildPath();cleanPreviousErrors();">Reload Player</a></li>
-                        <li><a id="getActiveSource" onclick="getActiveSource()">Download current flavor</a></li>
-                        <li><a onclick="getActiveBitrate()">Get Current Bitrate (Chrome/Firefox Only)</a></li>
-                        <li><a onclick="getYouboraAnalytics()">Track Youbora Analytics</a></li>
-                        <li><a onclick="getGoogleAnalytics()">Track Google Analytics</a>
+                        <li><a id="getActiveSource" onclick="kdpFunctions.getFlavor()">Download current flavor</a></li>
+                        <li><a onclick="kdpFunctions.getBitrate()">Get Current Bitrate (Chrome/Firefox Only)</a></li>
+                        <li><a onclick="getYouboraAnalytics()">Track Youbora Analytics (Coming Soon!)</a></li>
+                        <li><a onclick="getGoogleAnalytics()">Track Google Analytics (Coming Soon!)</a>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -154,7 +155,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit" onclick="vpaasSearch()">
+                        <button class="btn btn-default" type="submit" onclick="pageFunctions.vpaasSearch()">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
@@ -209,14 +210,14 @@
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
-    <button type="button" id="getSource" class="btn btn-primary btn-sm">get Sources</button>
-    <button type="button" id="getCaptions" class="btn btn-primary btn-sm">get Captions</button>
-    <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="tiny()">get TinyUrl</button>
+    <button type="button" id="getSource" class="btn btn-primary btn-sm">Get Sources</button>
+    <button type="button" id="getCaptions" class="btn btn-primary btn-sm">Get Captions</button>
+    <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();cleanPreviousErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
         <div class="input-group">
-            <input type="text" class="form-control" id="searchInput" placeholder="Media Changer" style="width: 202px !important;">
+            <input type="text" class="form-control" id="entryInput" placeholder="Media Changer" style="width: 202px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="setEntry();">
                     GO!
@@ -298,15 +299,10 @@
         $('#noEmbedInput').fadeIn(500);
         };
         setEntry = () => {
-            let input = document.getElementById("adInput").value;
+            let input = document.getElementById("entryInput").value;
             document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('changeMedia', {'entryId': input});
             cleanPreviousErrors();
             runtimeFields.empty();
-        };
-        //The VPAAS search function.
-        vpaasSearch = () => {
-            let searchTerm = $('#searchInput').val();
-            window.open("https://vpaas.kaltura.com/search/#stq=" + searchTerm + "&stp=1")
         };
         //The player KS setter.
         setKS = () => {
@@ -319,20 +315,6 @@
             });
             cleanPreviousErrors();
         };
-
-        //Simple player commands.
-        let kdpFunctions = {
-            doPlay: () => {document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay')},
-            doStop: () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop'),
-            reload:  () => document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("doReplay"),
-        };
-        const pageFunctions = {
-            checkAdTag: function(input) {
-                window.open(input)
-            },
-            cleanMonitor: () => $('#appendStats').text(''),
-
-        }
 
         //Entry changer
         changeEmbed = () => {
@@ -405,10 +387,6 @@
             window.open(currentSource.src, '_blank');
         };
         //Active bitrate getter
-        getActiveBitrate = () => {
-            let playerFrame = document.kPlayer_ifp_ifp.kPlayer_ifp;
-            alert(playerFrame.plugins.morePlugins.embedPlayer.currentBitrate);
-        };
         //Json Download function
         downloadJSON = () => {
             let jsonContent = document.getElementById('appendJSON');
