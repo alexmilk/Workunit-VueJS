@@ -17,7 +17,28 @@ const kdpFunctions = {
     setEntry: () => {
         let input = document.getElementById("entryInput").value;
         document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('changeMedia', {'entryId': input});
-        cleanPreviousErrors();
+        runtimeFields.text('');
+        pageFunctions.cleanErrors();
+    },
+    setKS: () => {
+        runtimeFields.empty();
+        kWidget.addReadyCallback(function (playerId) {
+            let kdp = document.getElementById(playerId);
+            let input = document.getElementById("ksInput").value;
+            kdp.setKDPAttribute('servicesProxy.kalturaClient', 'ks', input);
+            runtimeFields.text('');
+            pageFunctions.cleanErrors();
+        });
+    },
+    goToVast: () => {
+        let vastInspectUrl = 'https://developers.google.com/interactive-media-ads/docs/sdks/html5/vastinspector?tag=';
+        let playerAdTag = document.kPlayer_ifp_ifp.kalturaIframePackageData.playerConfig.plugins.doubleClick.adTagUrl;
+        let encodedAdTag = encodeURIComponent(playerAdTag);
+        if (playerAdTag === undefined) {
+            alert("DoubleClick is not configured")
+        } else {
+            window.open(vastInspectUrl + encodedAdTag);
+        }
     }
 };
 const pageFunctions = {
@@ -27,5 +48,18 @@ const pageFunctions = {
         let searchTerm = $('#searchInput').val();
         window.open("https://vpaas.kaltura.com/search/#stq=" + searchTerm + "&stp=1")
     },
-
+    cleanErrors: () => {
+        let errorBar = $("#errorBar h4");
+        if( errorBar.text().length > 2 ) {
+            errorBar.text('');
+            errorBar.slideUp(300);
+        }
+    },
+    getSource: () => {
+        let getSource = $("#getSource");
+        let playerSources = document.kPlayer_ifp_ifp.kPlayer_ifp.getSources();
+        for (let i = 0; i < playerSources.length; i++) {
+            parent.document.getElementById('appendStats').append(JSON.stringify(playerSources[i], null, 2));
+        }
+    }
 };

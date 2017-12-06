@@ -13,11 +13,13 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://jsoverson.github.io/jquery.pulse.js/jquery.pulse.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/mainEmbed.js"></script>
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
+    <script src="js/playerEmbed.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="Components/introModal.js"></script>
     <script src="js/playerFunctions.js"></script>
@@ -113,7 +115,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Player Functions<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a onclick="buildPath();cleanPreviousErrors();">Reload Player</a></li>
+                        <li><a onclick="buildPath();pageFunctions.cleanErrors();">Reload Player</a></li>
                         <li><a id="getActiveSource" onclick="kdpFunctions.getFlavor()">Download current flavor</a></li>
                         <li><a onclick="kdpFunctions.getBitrate()">Get Current Bitrate (Chrome/Firefox Only)</a></li>
                         <li><a onclick="getYouboraAnalytics()">Track Youbora Analytics (Coming Soon!)</a></li>
@@ -133,7 +135,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ad debugging<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" id="testOnVast" onclick="goToVast()">Test on Google VAST inspector</a></li>
+                        <li><a href="#" id="testOnVast" onclick="kdpFunctions.goToVast()">Test on Google VAST inspector</a></li>
                         <li><a href="https://i.loopme.me/html/vpaid/test-page.html" target="_blank">VPAID ad tester</a></li>
                         <li><a href="http://tagvalidator.videohub.tv/?adtag=&playerType=jwPlayer&playerSize=640x360&adtagType=&adChoicesOverlay=off" target="_blank">VideoHub ad tester</a></li>
                         <li><a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a></li>
@@ -210,16 +212,26 @@
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
-    <button type="button" id="getSource" class="btn btn-primary btn-sm">Get Sources</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
     <button type="button" id="getCaptions" class="btn btn-primary btn-sm">Get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
-    <button type="button" onclick="buildPath();cleanPreviousErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
+    <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
         <div class="input-group">
             <input type="text" class="form-control" id="entryInput" placeholder="Media Changer" style="width: 202px !important;">
             <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="setEntry();">
+                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setEntry();">
+                    GO!
+                </button>
+            </div>
+        </div>
+    </form>
+    <form class="navbar-form" style="padding: 0px">
+        <div class="input-group">
+            <input type="text" class="form-control" id="ksInput" placeholder="Set KS" style="width: 202px !important;">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setKS();">
                     GO!
                 </button>
             </div>
@@ -260,10 +272,6 @@
                                 <span class="input-group-addon" style="width: 88px">Entry ID</span>
                                 <input id="entryId" type="text" class="form-control" name="entryid">
                             </div>
-                            <div class="input-group" style="width: 250px; margin-bottom: 10px;">
-                                <span class="input-group-addon" style="width: 88px">KS</span>
-                                <input id="ksInput" type="text" class="form-control" name="partnerks">
-                            </div>
                     </td>
                     </tr>
                     <tr>
@@ -298,37 +306,12 @@
         showModalErr = () => {
         $('#noEmbedInput').fadeIn(500);
         };
-        setEntry = () => {
-            let input = document.getElementById("entryInput").value;
-            document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('changeMedia', {'entryId': input});
-            cleanPreviousErrors();
-            runtimeFields.empty();
-        };
-        //The player KS setter.
-        setKS = () => {
-            runtimeFields.empty();
-            kWidget.addReadyCallback(function (playerId) {
-                let kdp = document.getElementById(playerId);
-                let input = document.getElementById("ksInput").value;
-                kdp.setKDPAttribute('servicesProxy.kalturaClient', 'ks', input);
-                cleanPreviousErrors();
-            });
-            cleanPreviousErrors();
-        };
-
-        //Entry changer
         changeEmbed = () => {
             if ($('#customEmbedParams').css("display") == "none") {
                 $("#customEmbedParams").slideToggle(200);
             }
             else {
                 $("#customEmbedParams").slideToggle(200);
-            }
-        };
-        cleanPreviousErrors = () => {
-            if($("#errorBar h4").text().length > 2) {
-                $("#errorBar h4").text('');
-                $('#errorBar').slideUp(300);
             }
         };
         // Thumbnail remover
@@ -370,36 +353,18 @@
                 document.getElementById('hideControls').textContent = "Show controls bar";
             }
         });
-        //Vast ad tag referrer
-        goToVast = () => {
-            let vastInspectUrl = 'https://developers.google.com/interactive-media-ads/docs/sdks/html5/vastinspector?tag=';
-            let playerAdTag = document.kPlayer_ifp_ifp.kalturaIframePackageData.playerConfig.plugins.doubleClick.adTagUrl;
-            if (playerAdTag === undefined) {
-                alert("DoubleClick is not configured")
-            } else {
-                window.open(vastInspectUrl + playerAdTag);
-            }
-        };
         //Active source getter
         getActiveSource = () => {
             const playerSource = document.kPlayer_ifp_ifp.kPlayer_ifp;
             const currentSource = playerSource.getSource();
             window.open(currentSource.src, '_blank');
         };
-        //Active bitrate getter
         //Json Download function
         downloadJSON = () => {
             let jsonContent = document.getElementById('appendJSON');
             window.open('_blank').document.write(jsonContent.innerHTML);
         };
-        //Source getter
-        let getSource = $("#getSource");
-        getSource.click(function() {
-            let playerSources = document.kPlayer_ifp_ifp.kPlayer_ifp.getSources();
-            for (let i = 0; i < playerSources.length; i++) {
-                parent.document.getElementById('appendStats').append(JSON.stringify(playerSources[i], null, 2));
-            }
-        });
+        let runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
         //Caption getter
         let getCaptions = $("#getCaptions");
         getCaptions.click(function() {
@@ -488,225 +453,6 @@
                 success: function() {
                 $("#appendStats").append("<h5>" + data + "</h5>");
             }})};
-    </script>
-    <script>
-        var runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
-
-        //Custom embed code loader script.
-        let buildPath = function() {
-            var partner = $('#partnerId').val();
-            if (!partner) {
-                partner = "1666321";
-            }
-            var uiconf = $('#uiconfId').val();
-            if (!uiconf) {
-                uiconf = "39120681";
-            }
-            var path;
-            var radioInputs = $('#selectLocal,#selectCdn,#selectSecure');
-            for (var i = 0; i < radioInputs.length; i++) {
-                if (radioInputs[i].checked) {
-                    path = radioInputs[i].id;
-                }
-            }
-            // path = 'http://kgit.html5video.org/'+coreVer+'/mwEmbedLoader.php'+"/uiconf_id/"+$('#uiconf').val()+"/partner_id/"+$('#partnerId').val()+"/"+psVer
-            // Future development core tag
-
-            var endPoint;
-            switch (path) {
-                case "selectLocal":
-                    endPoint = '/mwEmbed/mwEmbedLoader.php/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
-                    break;
-                case "selectCdn":
-                    endPoint = 'http://cdnapi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
-                    break;
-                case "selectSecure":
-                    endPoint = 'https://cdnsecakmi.kaltura.com/p/' + partner + '/sp/' + partner +
-                        '00/embedIframeJs/uiconf_id/' + uiconf + '/partner_id/' + partner + "?&debug=true";
-            }
-            $.getScript(endPoint, function(data, textStatus, jqxhr) {
-                if (jqxhr.status === 200) {
-                    loadUpdatedEmbed();
-                } else {
-                    alert("Script failed to load. Cannot render player :(");
-                }
-            });
-        }
-        //Reload player function
-        let loadUpdatedEmbed = function() {
-            //The default configs for the player.
-            mw.setConfig("EmbedPlayer.ShowPlayerAlerts", true);
-            mw.setConfig("debug", true);
-            mw.setConfig("debugTarget", "analyticsLog");
-            mw.setConfig("autoScrollDebugTarget", true);
-            mw.setConfig('Kaltura.EnableEmbedUiConfJs', true);
-            //Get inputs from the embed fields.
-            let partner = $('#partnerId').val();
-            if (!partner) {
-                partner = "1666321";
-            }
-            let uiconf = $('#uiconfId').val();
-            if (!uiconf) {
-                uiconf = "39120681";
-            }
-            let entry = $('#entryId').val();
-            if (!entry) {
-                entry = "0_kjb4gz27";
-            }
-            //Clean all runtime values on the page.
-            runtimeFields.text('');
-            $("#errorBar").slideUp(300);
-            cleanPreviousErrors();
-            //Check if we have any uivars and split.
-            let str = $('#uivarsOverride').val();
-            if (str) {
-            str = str.split("\n").join('');
-            }
-            let myJson;
-            //Catches error for incorrect uivars.
-            try {
-                myJson = str ? $.parseJSON(str) : {};
-            } catch (error) {
-                alert('Please validate your JSON');
-                return;
-            }
-            //The main embed object.
-            const newEmbed = {
-                "targetId": "kPlayer_ifp",
-                "wid": "_" + partner,
-                "uiconf_id": uiconf,
-                "flashvars": myJson,
-                "cache_st": Date.now(),
-                "entry_id": entry
-            };
-            document.kPlayer_ifp_ifp.kWidget.embed(newEmbed);
-        }
-    </script>
-    <!--Main embed script-->
-    <script>
-        //The initial modal embed function, wrapped in var to prevent auto execution.
-        let embedWidget = function() {
-            //Player path defaults
-            let partner = $("#partnerPrototype").val();
-            if (!partner) {
-                partner = $("#partnerPrototype").attr("placeholder");
-            }
-            let uiconf = $("#playerPrototype").val();
-            if (!uiconf) {
-                uiconf = $("#playerPrototype").attr("placeholder");
-            }
-            let entryId = $("#entryPrototype").val();
-            if (!entryId) {
-                entryId = $("entryPrototype").attr("placeholder");
-            }
-            let path;
-            //Check which radio button was selected and define its ID to the path variable.
-            let radioInputs = $("#useCdnEmbed,#useLocalEmbed,#useSecureEmbed");
-            for (let i = 0; i < radioInputs.length; i++) {
-                if (radioInputs[i].checked) {
-                    path = radioInputs[i].id;
-                }
-            }
-            //Check which id the path variable was set with, and define the endPoint accordingly for the embed setup.
-            let endPoint;
-            switch (path) {
-                case "useLocalEmbed":
-                    endPoint = "/mwEmbed/mwEmbedLoader.php/p/" + partner + "/sp/" + partner +
-                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner + "?&debug=true";
-                    break;
-                case "useCdnEmbed":
-                    endPoint = "http://cdnapi.kaltura.com/p/" + partner + "/sp/" + partner +
-                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner;
-                    break;
-                case "useSecureEmbed":
-                    endPoint = "https://cdnsecakmi.kaltura.com/p/" + partner + "/sp/" + partner +
-                        "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner;
-            }
-            //The embed library getter script in order to execute the embed function.
-            $.getScript(endPoint, function(data, textStatus, jqxhr) {
-                if (jqxhr.status === 200) {
-                    embed();
-                } else {
-                    alert("Script failed to load. Cannot render player :(");
-                }
-            })
-        };
-        //The main embed function for the whole instance.
-        let embed = function (){
-            //Embed defaults
-            let partnerPrototype = $('#partnerPrototype').val();
-            if (!partnerPrototype) {
-                partnerPrototype = "1666321";
-            }
-            let playerPrototype = $('#playerPrototype').val();
-            if (!playerPrototype) {
-                playerPrototype = "39120681";
-            }
-            let entryPrototype = $('#entryPrototype').val();
-            if (!entryPrototype) {
-                entryPrototype = "0_kjb4gz27";
-            }
-            cleanPreviousErrors();
-            $("#errorBar").slideUp(300);
-            $("#updateNotification").fadeOut(500);
-            var adInput = $('#adTagId').val();
-            if ($('#adTagId').val().length <= 0) {
-                adInput = null
-            }
-            mw.setConfig("EmbedPlayer.ShowPlayerAlerts", true);
-            mw.setConfig("debug", true);
-            mw.setConfig("debugTarget", "analyticsLog");
-            mw.setConfig("autoScrollDebugTarget", true);
-            mw.setConfig('Kaltura.EnableEmbedUiConfJs', true);
-            kWidget.embed({
-                "targetId": "kPlayer_ifp",
-                "wid": "_" + partnerPrototype,
-                "uiconf_id": playerPrototype,
-                "flashvars": {},
-                "cache_st": Date.now(),
-                "entry_id": entryPrototype
-            });
-            //kBinds and other functions
-            kWidget.addReadyCallback(function (playerId) {
-                let kdp = document.getElementById(playerId);
-                kdp.kBind('playerReady', function () {
-                    let runtimes = {
-                        pageTitle: $('#pageTitle'),
-                        entryIdField: $("#entryIdText"),
-                        uiconfIdField: $("#uiconfText"),
-                        loadTimeField: $("#loadTime"),
-                        appVersionField: $("#appVersion"),
-                        loadedTime: window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart
-                    };
-                    let kdp = document.kPlayer_ifp_ifp.kPlayer_ifp;
-                    runtimes.pageTitle.html(kdp.evaluate("{mediaProxy.entry.name}"));
-                    runtimes.entryIdField.append(kdp.evaluate("Entry id: " + "{mediaProxy.entry.id}"));
-                    runtimes.uiconfIdField.append(kdp.evaluate("Player id: " + "{configProxy.kw.uiConfId}"));
-                    runtimes.loadTimeField.prepend("Page loaded in " + runtimes.loadedTime + " milliseconds");
-                    runtimes.appVersionField.append("User agent: " + clientInformation.appVersion);
-                    let playerPlugins = document.kPlayer_ifp_ifp.kalturaIframePackageData.playerConfig.plugins;
-                    $("#appendJSON").append(JSON.stringify(playerPlugins, null, 2));
-                    $(".mw-debug-info").append(playerPlugins.debugInfo);
-                });
-
-                kdp.kBind('playerError', function (errorEvent) {
-                    if($("#errorBar h4").text().length === 0) {
-                        $("#errorBar").slideDown(300);
-                        $("#errorBar h4").append("An error has been logged on the player - " + errorEvent.message);
-                    }});
-                kdp.kBind('postSequenceStart', function () {
-                    alert("Playback Ended");
-                });
-                $('#okError').click(function () {
-                    $('#errorBar').slideUp(300);
-                });
-                kdp.kBind('entryReady', function () {
-                    cleanPreviousErrors();
-                });
-            });
-        };
     </script>
 </div>
 
