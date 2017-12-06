@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    padding-top: 61px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ededed+0,dddddd+17,fcfcfc+26,ffffff+100 */
     background: #ededed; /* Old browsers */
     background: -moz-linear-gradient(top,  #ededed 0%, #dddddd 17%, #fcfcfc 26%, #ffffff 100%); /* FF3.6-15 */

@@ -99,7 +99,7 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-default" style="position: relative !important;">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -213,7 +213,7 @@
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
-    <button type="button" id="getCaptions" class="btn btn-primary btn-sm">Get Captions</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
@@ -239,7 +239,7 @@
     </form>
     <form class="navbar-form" style="padding: 0px; display: inline" id="formAd">
         <div class="input-group">
-        <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
+            <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="pageFunctions.checkAdTag(document.getElementById('adTagId').value)">
                     GO!
@@ -272,27 +272,30 @@
                                 <span class="input-group-addon" style="width: 88px">Entry ID</span>
                                 <input id="entryId" type="text" class="form-control" name="entryid">
                             </div>
-                    </td>
+                        </td>
                     </tr>
                     <tr>
-                    <td>
-                        <p>Please choose embed method:</p>
-                        <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span><br>
-                        <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline-block;"/><span class="label label-primary">Use CDN embed</span><br>
-                        <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline-block;"/><span class="label label-primary">Use Secure embed</span><br>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        <td>
+                            <p>Please choose embed method:</p>
+                            <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span>
+                            <br>
+                            <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use CDN embed</span>
+                            <br>
+                            <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use Secure embed</span>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <div style="width: 700px; display: inline-block;">
-        <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
+            <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
             <span>
         <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
         </select>
             </span>
-        <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit"/>
+            <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit" />
         </div>
     </div>
 </div><br>
@@ -353,26 +356,12 @@
                 document.getElementById('hideControls').textContent = "Show controls bar";
             }
         });
-        //Active source getter
-        getActiveSource = () => {
-            const playerSource = document.kPlayer_ifp_ifp.kPlayer_ifp;
-            const currentSource = playerSource.getSource();
-            window.open(currentSource.src, '_blank');
-        };
         //Json Download function
         downloadJSON = () => {
             let jsonContent = document.getElementById('appendJSON');
             window.open('_blank').document.write(jsonContent.innerHTML);
         };
         let runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
-        //Caption getter
-        let getCaptions = $("#getCaptions");
-        getCaptions.click(function() {
-            let playerCaptions = document.kPlayer_ifp_ifp.kPlayer_ifp.mediaElement.getTextTracks();
-            for (let i = 0; i < playerCaptions.length; i++) {
-                parent.document.getElementById('appendStats').append(JSON.stringify(playerCaptions[i], null, 2));
-            }
-        });
         //Self executing function that fades elements in.
         $(document).ready(function() {
             $('#topHeaderDiv, #appendStats, #kPlayer_ifp, #mainControlDiv').fadeIn(400);
@@ -455,7 +444,6 @@
             }})};
     </script>
 </div>
-
 <div style="width:1125px; height: auto; margin: 0 auto;">
     <div style="clear: both;"></div>
     <button type="button" class="btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text('');>Clear log</button>

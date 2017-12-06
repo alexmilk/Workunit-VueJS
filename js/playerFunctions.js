@@ -39,6 +39,13 @@ const kdpFunctions = {
         } else {
             window.open(vastInspectUrl + encodedAdTag);
         }
+    },
+    getCaptions: () => {
+        let getCaptions = $("#getCaptions");
+        let playerCaptions = document.kPlayer_ifp_ifp.kPlayer_ifp.mediaElement.getTextTracks();
+        for (let i = 0; i < playerCaptions.length; i++) {
+            parent.document.getElementById('appendStats').append(JSON.stringify(playerCaptions[i], null, 2));
+        }
     }
 };
 const pageFunctions = {
