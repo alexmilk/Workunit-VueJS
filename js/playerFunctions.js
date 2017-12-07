@@ -41,10 +41,42 @@ const kdpFunctions = {
         }
     },
     getCaptions: () => {
-        let getCaptions = $("#getCaptions");
         let playerCaptions = document.kPlayer_ifp_ifp.kPlayer_ifp.mediaElement.getTextTracks();
         for (let i = 0; i < playerCaptions.length; i++) {
             parent.document.getElementById('appendStats').append(JSON.stringify(playerCaptions[i], null, 2));
+        }
+    },
+    removeThumb: () => {
+        const playerContent = $("#kPlayer_ifp_ifp").contents()[0];
+        const playerThumb = $(playerContent).find("#kPlayer_ifp");
+        if ($(playerThumb).css("visibility") == 'visible') {
+            document.getElementById('removeThumb').textContent = "Show thumbnail";
+            $(playerThumb).css("visibility", "hidden");
+        } else {
+            $(playerThumb).css("visibility", "visible");
+            document.getElementById('removeThumb').textContent = "Hide thumbnail";
+        }
+    },
+    removePlayBtn: () => {
+        const playerContent = $("#kPlayer_ifp_ifp").contents()[0];
+        const playButton = $(playerContent).find(".largePlayBtn");
+        if ($(playButton).css("display") == 'block') {
+            document.getElementById('removePlay').textContent = "Show play button";
+            $(playButton).css("display", "none");
+        } else {
+            $(playButton).css("display", "block");
+            document.getElementById('removePlay').textContent = "Hide play button";
+        }
+    },
+    hideControls: () => {
+        const hideControls = $("#kPlayer_ifp_ifp").contents()[0];
+        const controls = window.kPlayer_ifp_ifp.document.querySelector('.controlBarContainer');
+        if (controls.style.display === "none") {
+            controls.style.display = "block";
+            document.getElementById('hideControls').textContent = "Hide controls bar";
+        } else {
+            controls.style.display = "none";
+            document.getElementById('hideControls').textContent = "Show controls bar";
         }
     }
 };

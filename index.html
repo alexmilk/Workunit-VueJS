@@ -147,9 +147,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">UI Tools<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" onclick="kdpFunctions.reload()">Reload video asset</a></li>
-                        <li><a href="#" id="removeThumb">Remove Thumbnail</a></li>
-                        <li><a href="#" id="removePlay">Remove play button</a></li>
-                        <li><a href="#" id="hideControls">Hide controls bar</a></li>
+                        <li><a href="#" id="removeThumb" onclick="kdpFunctions.removeThumb()">Remove Thumbnail</a></li>
+                        <li><a href="#" id="removePlay" onclick="kdpFunctions.removePlayBtn()">Remove play button</a></li>
+                        <li><a href="#" id="hideControls" onclick="kdpFunctions.hideControls()">Hide controls bar</a></li>
                     </ul>
                 </li>
             </ul>
@@ -317,45 +317,6 @@
                 $("#customEmbedParams").slideToggle(200);
             }
         };
-        // Thumbnail remover
-        let removeThumb = $("#removeThumb");
-        removeThumb.click(function() {
-            const playerContent = $("#kPlayer_ifp_ifp").contents()[0];
-            const playerThumb = $(playerContent).find("#kPlayer_ifp");
-            if ($(playerThumb).css("visibility") == 'visible') {
-                document.getElementById('removeThumb').textContent = "Show thumbnail";
-                $(playerThumb).css("visibility", "hidden");
-            } else {
-                $(playerThumb).css("visibility", "visible");
-                document.getElementById('removeThumb').textContent = "Hide thumbnail";
-            }
-        });
-        //Play button remover
-        let removePlay = $("#removePlay");
-        removePlay.click(function() {
-            const playerContent = $("#kPlayer_ifp_ifp").contents()[0];
-            const playButton = $(playerContent).find(".largePlayBtn");
-            if ($(playButton).css("display") == 'block') {
-                document.getElementById('removePlay').textContent = "Show play button";
-                $(playButton).css("display", "none");
-            } else {
-                $(playButton).css("display", "block");
-                document.getElementById('removePlay').textContent = "Hide play button";
-            }
-        });
-        //Player controls hide function
-        let hideControls = $("#hideControls");
-        hideControls.click(function() {
-            const hideControls = $("#kPlayer_ifp_ifp").contents()[0];
-            const controls = window.kPlayer_ifp_ifp.document.querySelector('.controlBarContainer');
-            if (controls.style.display == "none") {
-                controls.style.display = "block";
-                document.getElementById('hideControls').textContent = "Hide controls bar";
-            } else {
-                controls.style.display = "none";
-                document.getElementById('hideControls').textContent = "Show controls bar";
-            }
-        });
         //Json Download function
         downloadJSON = () => {
             let jsonContent = document.getElementById('appendJSON');

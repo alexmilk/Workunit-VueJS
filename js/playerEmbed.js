@@ -37,6 +37,7 @@ let buildPath = function() {
     $.getScript(endPoint, function(data, textStatus, jqxhr) {
         if (jqxhr.status === 200) {
             loadUpdatedEmbed();
+            $('#appendStats').append("<h5 style='color: white;'>" + "Monitor is ready." + "</h5>");
         } else {
             alert("Script failed to load. Cannot render player :(");
         }
