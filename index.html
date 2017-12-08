@@ -81,19 +81,29 @@
                             <img src="images/error.png" alt="Check your tag" width="25" height="25" style="display: none" v-bind:class="tagErrorTick"/>
                         </td>
                     </tr>
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<h5 v-text="message5"></h5>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<select id="embedTypeSelector" class="form-control" name="embedTypeSelector">-->
+                                <!--<option selected disabled>Select embed type</option>-->
+                            <!--</select>-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed">
-                            <span class="label label-primary">Use local embed</span>
+                            <label class="label label-primary" style="display: inline-block; !important;">Use local embed</label>
                         </td>
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useCdnEmbed" onchange="removeAlert()">
-                            <span class="label label-primary">Use CDN embed</span>
+                            <label class="label label-primary" style="display: inline-block; !important;">Use CDN embed</label>
                         </td>
                     </tr>
                     <tr>
                         <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed" onchange="alertSecure()">
-                            <span class="label label-danger">Use secure embed</span>
+                            <label class="label label-danger" style="display: inline-block; !important;">Use secure embed</label>
                         </td>
                     </tr>
                 </table>
