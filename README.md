@@ -28,6 +28,6 @@ The instance is compatible on most browser versions and types, please make sure 
 
 This project is licensed under the MIT License. http://www.opensource.org/licenses/mit-license.php
 
-###### Copyright information
+###### Copyright information Copyright information
 
 The project was designed and created by Alex Milkis 2017, please use the instance for the purpose it was made for and follow the instructions to make sure it is running optimally.
