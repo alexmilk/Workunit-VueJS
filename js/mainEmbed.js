@@ -25,6 +25,7 @@ let embedWidget = function() {
         }
     }
     //Check which id the path variable was set with, and define the endPoint accordingly for the embed setup.
+    //Version oriented embed path http://cdnapi.kaltura.com/html5/html5lib/v2.49/mwEmbedLoader.php/p/189724100/uiconf_id/33256021
     let endPoint;
     switch (path) {
         case "useLocalEmbed":
