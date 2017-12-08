@@ -30,6 +30,9 @@ body {
 .entryGreenTick {
     display: block !important;
 }
+.tagGreenTick {
+    display: block !important;
+}
 .errorTick {
     display: block !important;
 }
