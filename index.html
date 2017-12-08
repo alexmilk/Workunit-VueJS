@@ -49,69 +49,60 @@
                         <td>
                             <h5 v-text="message1"></h5>
                         </td>
-                        <td><input class="form-control" id="partnerPrototype" style="margin-left: -20px;" type="text" placeholder="1666321" v-model="partnerId"/>
-                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="partnerTick"/>
-                            <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="partnerErrorTick"/>
+                        <td>
+                            <input class="form-control" id="partnerPrototype" style="margin-left: -20px;" type="text" placeholder="1666321" v-model="partnerId" />
+                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="partnerTick" />
+                            <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="partnerErrorTick" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <h5 v-text="message2"></h5>
                         </td>
-                        <td><input class='form-control' id="playerPrototype" style="margin-left: -20px;" type="text" placeholder="39120681" v-model="uiconfId"/></td>
-                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="playerTick"/>
-                            <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="playerErrorTick"/>
+                        <td>
+                            <input class='form-control' id="playerPrototype" style="margin-left: -20px;" type="text" placeholder="39120681" v-model="uiconfId" />
+                        </td>
+                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="playerTick" />
+                            <img src="images/error.png" width="25" height="25" style="display: none" v-bind:class="playerErrorTick" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <h5 v-text="message3"></h5>
                         </td>
-                        <td><input class='form-control'  id="entryPrototype" style="margin-left: -20px;" type="text" placeholder="0_kjb4gz27" v-model="entryId"/></td>
-                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="entryTick"/>
-                            <img src="images/error.png" alt="Check your entry id" width="25" height="25" style="display: none" v-bind:class="entryErrorTick"/>
+                        <td>
+                            <input class='form-control' id="entryPrototype" style="margin-left: -20px;" type="text" placeholder="0_kjb4gz27" v-model="entryId" />
+                        </td>
+                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="entryTick" />
+                            <img src="images/error.png" alt="Check your entry id" width="25" height="25" style="display: none" v-bind:class="entryErrorTick" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <h5 v-text="message4"></h5>
                         </td>
-                        <td><input class='form-control'  id="tagPrototype" style="margin-left: -20px;" type="text" placeholder="Example - v2.63" v-model="tagId"/></td>
-                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="tagTick"/>
-                            <img src="images/error.png" alt="Check your tag" width="25" height="25" style="display: none" v-bind:class="tagErrorTick"/>
+                        <td>
+                            <input class='form-control' id="tagPrototype" style="margin-left: -20px;" type="text" placeholder="v2.63" v-model="tagId"/>
+                        </td>
+                        <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="tagTick" />
+                            <img src="images/error.png" alt="Check your tag" width="25" height="25" style="display: none" v-bind:class="tagErrorTick" />
                         </td>
                     </tr>
-                    <!--<tr>-->
-                        <!--<td>-->
-                            <!--<select class="form-control" multiple="multiple" size="3" style="overflow:hidden; margin-top: 10px">-->
-                                <!--<option value="loc">Local Embed</option>-->
-                                <!--<option value="cdn">CDN Embed</option>-->
-                                <!--<option value="sec" disabled>Secure Embed</option>-->
-                            <!--</select>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>-->
-                            <!--<h5 v-text="message5"></h5>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<select id="embedTypeSelector" class="form-control" name="embedTypeSelector">-->
-                                <!--<option selected disabled>Select embed type</option>-->
-                            <!--</select>-->
-                        <!--</td>-->
-                    <!--</tr>-->
                     <tr>
-                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed">
+                        <td>
+                            <input type=radio name="options" style="width: 16px; height: 15px;" id="useLocalEmbed" onclick="disableTag()">
                             <label class="label label-primary" style="display: inline-block; !important;">Use local embed</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useCdnEmbed" onchange="removeAlert()">
+                        <td>
+                            <input type=radio name="options" style="width: 16px; height: 15px;" id="useCdnEmbed" onchange="enableTag()">
                             <label class="label label-primary" style="display: inline-block; !important;">Use CDN embed</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed" onchange="alertSecure()">
+                        <td>
+                            <input type=radio name="options" style="width: 16px; height: 15px;" id="useSecureEmbed" onchange="alertSecure()">
                             <label class="label label-danger" style="display: inline-block; !important;">Use secure embed</label>
                         </td>
                     </tr>
@@ -119,13 +110,23 @@
                 <h5 style='color: red; display: none; text-align: left; font-size: x-small' id='sslAlert'>The page is using SSL, only secure embed is available.</h5>
             </div>
             <div class="modal-footer">
-                <notification id="modalNotifications" style="text-align: left;"></notification>
-                <br>
-                <button v-bind:disabled="checkDisable" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
-                <button id="loadDefaults" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
+                <notification id="modalNotifications" style="text-align: left; display: inline;"></notification>
+                <button v-bind:disabled="checkDisable" style="vertical-align: sub;" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
+                <button id="loadDefaults" type="button" style="vertical-align: sub;" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
             </div>
         </div>
     </div>
+    <script>
+        enableTag = () => {
+            let tagInput = document.getElementById('tagPrototype');
+            tagInput.disabled = false;
+        }
+        disableTag = () => {
+            let tagInput = document.getElementById('tagPrototype');
+            tagInput.disabled = true;
+            console.warn("Custom player version option has been disabled - Not supported in local embed");
+        }
+    </script>
 </div>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -446,7 +447,8 @@
         let radioConfigs = {
             "localEmbedRadio": document.getElementById("useLocalEmbed"),
             "cdnEmbedRadio": document.getElementById("useCdnEmbed"),
-            "secureEmbedRadio": document.getElementById("useSecureEmbed")
+            "secureEmbedRadio": document.getElementById("useSecureEmbed"),
+            "tagInput": document.getElementById("tagPrototype")
         };
         if (window.location.protocol === 'https:') {
             radioConfigs.localEmbedRadio.disabled = true;
@@ -456,6 +458,9 @@
         } else {
             radioConfigs.localEmbedRadio.setAttribute("checked", "");
             radioConfigs.secureEmbedRadio.disabled = true;
+        }
+        if (radioConfigs.localEmbedRadio.checked){
+            radioConfigs.tagInput.disabled = true;
         }
     });
 </script>

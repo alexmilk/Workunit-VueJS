@@ -16,6 +16,10 @@ let embedWidget = function() {
     if (!entryId) {
         entryId = $("entryPrototype").attr("placeholder");
     }
+    let tag = $("#tagPrototype").val();
+    if (!tag) {
+        tag = 'v2.63';
+    }
     let path;
     //Check which radio button was selected and define its ID to the path variable.
     let radioInputs = $("#useCdnEmbed,#useLocalEmbed,#useSecureEmbed");
@@ -26,6 +30,10 @@ let embedWidget = function() {
     }
     //Check which id the path variable was set with, and define the endPoint accordingly for the embed setup.
     //Version oriented embed path http://cdnapi.kaltura.com/html5/html5lib/v2.49/mwEmbedLoader.php/p/189724100/uiconf_id/33256021
+    /*
+     endpoint = "http://cdnapi.kaltura.com/html5/html5lib/" + tag + "/mwEmbedLoader.php/p/" + partner +
+     "00/uiconf_id/" + uiconf
+     */
     let endPoint;
     switch (path) {
         case "useLocalEmbed":
@@ -33,8 +41,7 @@ let embedWidget = function() {
                 "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner + "?&debug=true";
             break;
         case "useCdnEmbed":
-            endPoint = "http://cdnapi.kaltura.com/p/" + partner + "/sp/" + partner +
-                "00/embedIframeJs/uiconf_id/" + uiconf + "/partner_id/" + partner;
+                endPoint = "http://cdnapi.kaltura.com/html5/html5lib/" + tag + "/mwEmbedLoader.php/p/" + partner + "/uiconf_id/" + uiconf;
             break;
         case "useSecureEmbed":
             endPoint = "https://cdnsecakmi.kaltura.com/p/" + partner + "/sp/" + partner +
