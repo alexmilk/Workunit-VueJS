@@ -82,7 +82,7 @@
                             <h5 v-text="message4"></h5>
                         </td>
                         <td>
-                            <input class='form-control' id="tagPrototype" style="margin-left: -20px;" type="text" placeholder="v2.63" v-model="tagId"/>
+                            <input class='form-control' id="tagPrototype" style="margin-left: -20px;" onkeypress="allowSubmit()"type="text" placeholder="v2.63" v-model="tagId"/>
                         </td>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="tagTick" />
                             <img src="images/error.png" alt="Check your tag" width="25" height="25" style="display: none" v-bind:class="tagErrorTick" />
@@ -125,6 +125,10 @@
             let tagInput = document.getElementById('tagPrototype');
             tagInput.disabled = true;
             console.warn("Custom player version option has been disabled - Not supported in local embed");
+        }
+        allowSubmit = () => {
+            let submitBtn = document.getElementById('submitButton');
+            submitBtn.disabled = false;
         }
     </script>
 </div>
