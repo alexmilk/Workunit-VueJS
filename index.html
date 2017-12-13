@@ -325,7 +325,7 @@
         <div style="width: 700px; display: inline-block;">
             <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
             <span>
-        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="appendPlugin(event)">
+        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
         </select>
             </span>
@@ -376,15 +376,7 @@
             }
         });
         //Plugin appender
-        appendPlugin = (event) => {
-            let selectors = {
-                prop: $(event.target).val(),
-                varsDiv: $("#uivarsOverride")
-            };
-            selectors.varsDiv.val(JSON.stringify(plugins[selectors.prop].json, null, 2));
-            selectors.varsDiv.focus();
-            showReloadWarning();
-        };
+
         showReloadWarning = () => $("#updateNotification").fadeIn(500);
         //Open tinyUrl button
         tiny = () => {

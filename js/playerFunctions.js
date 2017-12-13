@@ -109,5 +109,14 @@ const pageFunctions = {
         selectors.adTag.val(adSlots[selectors.prop].adTagUrl);
         selectors.adTag.focus();
         showReloadWarning();
+    },
+    appendPlugin: (event) => {
+        let selectors = {
+            prop: $(event.target).val(),
+            varsDiv: $("#uivarsOverride")
+        };
+        selectors.varsDiv.val(JSON.stringify(plugins[selectors.prop].json, null, 2));
+        selectors.varsDiv.focus();
+        showReloadWarning();
     }
 };
