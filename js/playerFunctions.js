@@ -100,5 +100,14 @@ const pageFunctions = {
         for (let i = 0; i < playerSources.length; i++) {
             parent.document.getElementById('appendStats').append(JSON.stringify(playerSources[i], null, 2));
         }
+    },
+    appendSlot: (event) => {
+        let selectors = {
+            prop: $(event.target).val(),
+            adTag: $("#adTagId")
+        };
+        selectors.adTag.val(adSlots[selectors.prop].adTagUrl);
+        selectors.adTag.focus();
+        showReloadWarning();
     }
 };

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
+    <script src="js/adSlots.js"></script>
     <script src="js/playerEmbed.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="Components/introModal.js"></script>
@@ -280,7 +281,7 @@
             </div>
         </div>
     </form>
-    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="appendSlot(event)">
+    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="pageFunctions.appendSlot(event)">
         <option selected disabled>Select sample ad tag</option>
     </select>
     <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
@@ -361,37 +362,6 @@
             $('#topHeaderDiv, #appendStats, #kPlayer_ifp, #mainControlDiv').fadeIn(400);
             $('#appendStats').append("<h5 style='color: white;'>" + "Monitor is ready." + "</h5>");
         });
-        //Preset ad selector for testing
-        const adSlots = {
-            inlinePreroll: {
-                "slotType": "Inline preroll",
-                "adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=",
-            },
-            skippablePreroll: {
-                "slotType": "skippable preroll",
-                "adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator=",
-            },
-            SingleRedirectError: {
-                "slotType": "Single redirect error",
-                "adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dredirecterror&nofb=1&correlator=",
-            },
-            SingleVastInline: {
-                "slotType": "Single VAST Inline",
-                "adTagUrl": "https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=is&c=23&pl=VAST&pli=14602547&PluID=0&pos=9562&ord=%5Btimestamp%5D&cim=1",
-            },
-            VmapPreMidPost: {
-                "slotType": "VMAP Pre,Mid,Post ad pods",
-                "adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vmap&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpostpod&cmsid=496&vid=short_onecue&correlator=",
-            },
-            VPAIDPreroll: {
-                "slotType": "VPAID 2.0 Preroll",
-                "adTagUrl": "http://search.spotxchange.com/vast/2.0/85394?VPAID=JS&content_page_url={utility.referrer_url}&cb={utility.random}&player_width=640&player_height=480",
-            },
-            None: {
-                "slotType": "No ads",
-                "adTagUrl": null,
-            }
-        };
         //Self executing function that populates the available ad tags and plugins for the custom embed function.
         $(document).ready(function() {
             let selectors = {
@@ -405,16 +375,6 @@
                 selectors.plugin.append("<option value= " + prop + ">" + plugins[prop].displayName + "</option>")
             }
         });
-        //Ad tag appender
-        appendSlot = (event) => {
-            let selectors = {
-                prop: $(event.target).val(),
-                adTag: $("#adTagId")
-            };
-            selectors.adTag.val(adSlots[selectors.prop].adTagUrl);
-            selectors.adTag.focus();
-            showReloadWarning();
-        };
         //Plugin appender
         appendPlugin = (event) => {
             let selectors = {
