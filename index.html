@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
+    <script src="js/jsonModal.js"></script>
     <script src="js/adSlots.js"></script>
     <script src="js/playerEmbed.js"></script>
     <script src="https://unpkg.com/vue"></script>
@@ -171,7 +172,6 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" id="testOnVast" onclick="kdpFunctions.goToVast()">Test on Google VAST inspector</a></li>
                         <li><a href="https://i.loopme.me/html/vpaid/test-page.html" target="_blank">VPAID ad tester</a></li>
-                        <li><a href="http://tagvalidator.videohub.tv/?adtag=&playerType=jwPlayer&playerSize=640x360&adtagType=&adChoicesOverlay=off" target="_blank">VideoHub ad tester</a></li>
                         <li><a href="https://video-dev.github.io/hls.js/demo/" target="_blank">Standalone HLS.JS player</a></li>
                         <li><a href="http://www.zedo.com/vastvalidator/" target="_blank">Zedo ad tester</a></li>
                         <li><a href="https://www.spotx.tv/tag-generator/" target="_blank">SPOTX Tag Generator</a></li>
@@ -249,6 +249,7 @@
     <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick=showJsonModal()>Download JSON</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
@@ -335,9 +336,9 @@
 </div><br>
 <!--JSON Config DIV-->
 <div style="width:1125px; height: 410px; margin: 0 auto;">
-    <p style="font-size: small; font-family: Arial;">Player's JSON config:</p>
-    <pre id="appendJSON"></pre>
-    <div id="analyticsLog" style="float: right; box-sizing: border-box;">
+    <!--<p style="font-size: small; font-family: Arial;">Player's JSON config:</p>-->
+    <!--<pre id="appendJSON"></pre>-->
+    <div id="analyticsLog" style="float: left; box-sizing: border-box; width: 1125px;">
     </div>
         <script>
         showModalErr = () => {
@@ -392,8 +393,9 @@
 </div>
 <div style="width:1125px; height: auto; margin: 0 auto;">
     <div style="clear: both;"></div>
-    <button type="button" class="btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text('');>Clear log</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick=downloadJSON()>Download JSON</button>
+    <button type="button" class="btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text(''); style="
+    margin-right: 0;
+">Clear log</button>
 </div>
 <div style="clear: both;"></div>
 <div id="footer">

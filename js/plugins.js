@@ -9,7 +9,7 @@ var plugins = [
                 "plugin": true,
                 "adTagUrl": "",
                 "prerollUrlJs": null,
-                "leadWithFlash": true,
+                "leadWithFlash": false,
                 "trackCuePoints": false,
                 "debugMode": true, //Should enable debugMode for DoubleClick systems.
                 "adsManagerLoadedTimeout": 15000
