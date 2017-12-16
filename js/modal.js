@@ -27,3 +27,16 @@ removeAlert = () => {
         hasAlert = false;
     }
 };
+enableTag = () => {
+    let tagInput = document.getElementById('tagPrototype');
+    tagInput.disabled = false;
+};
+disableTag = () => {
+    let tagInput = document.getElementById('tagPrototype');
+    tagInput.disabled = true;
+    console.warn("Custom player version option has been disabled - Not supported in local embed");
+};
+allowSubmit = () => {
+    let submitBtn = document.getElementById('submitButton');
+    submitBtn.disabled = false;
+};

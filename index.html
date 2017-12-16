@@ -7,7 +7,6 @@
 <!-- MIT Licensed. http://www.opensource.org/licenses/mit-license.php -->
 <!-- http://corp.kaltura.com -->
 
-
 <head>
     <title>Kaltura Debugging Station</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -58,7 +57,7 @@
                 <h4 class="modal-title">Please enter embed params:</h4>
             </div>
             <div class="modal-body">
-                <img src="images/gif_logo.gif" class="pull-right" style="width: 150px; height: 150px; margin-right: 80px;">
+                <img src="images/testunit_logo.jpg" class="pull-right">
                 <table>
                     <colgroup>
                         <col span="1" style="background-color:white">
@@ -135,23 +134,8 @@
             </div>
         </div>
     </div>
-    <script>
-        enableTag = () => {
-            let tagInput = document.getElementById('tagPrototype');
-            tagInput.disabled = false;
-        }
-        disableTag = () => {
-            let tagInput = document.getElementById('tagPrototype');
-            tagInput.disabled = true;
-            console.warn("Custom player version option has been disabled - Not supported in local embed");
-        }
-        allowSubmit = () => {
-            let submitBtn = document.getElementById('submitButton');
-            submitBtn.disabled = false;
-        }
-    </script>
 </div>
-
+<!--The top navigation bar-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -218,17 +202,14 @@
         </div>
     </div>
 </nav>
+<!--The alert block for incorrect embed params-->
 <div class="alert alert-danger alert-dismissible center-block" id="noEmbedInput" role="alert" style="display: none; width: 450px; margin-top: 5px;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="window.location.reload()"><span aria-hidden="true">&times;</span></button>
     No embed params were given, please reload the page.
 </div>
-<!--Player main div-->
+<!--The upper embed details element-->
 <div id="topHeaderDiv">
     <div class="containerLeft">
-        <div class="alert alert-danger alert-dismissible center-block" id="noEmbedInput" role="alert" style="display: none; width: 450px; margin-top: 5px;">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            No embed params were given, please reload the page.
-        </div>
         <tr>
             <td>
                 <h2 id="pageTitle" style="color: #3b3a40"></h2>
@@ -250,15 +231,15 @@
     </div>
 </div>
 <br>
-<!--The main section Player + Stats-->
+<!--The middle section of the player and monitor elements-->
 <div style="width:1125px; height: 320px; margin: auto;">
-    <!--Main player DIV-->
+    <!--The player element-->
     <div id="kPlayer_ifp" itemprop="video" itemscope></div>
-    <!--Small analytics log DIV-->
+    <!--The monitor element-->
     <pre id="appendStats"></pre>
     <div style="clear: both;"></div>
 </div>
-<!--Control panel & buttons DIV-->
+<!--Lower section containing controls buttons and custom embed-->
 <div style="clear: both;"></div>
 <div id="mainControlDiv" style="margin-top: 15px">
     <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
@@ -352,9 +333,8 @@
         </div>
     </div>
 </div><br>
-<!--JSON Config DIV-->
+<!--The bottom monitor-->
 <div style="width:1125px; height: 410px; margin: 0 auto;">
-    <!--<p style="font-size: small; font-family: Arial;">Player's JSON config:</p>-->
     <div id="analyticsLog" style="float: left; box-sizing: border-box; width: 1125px;">
     </div>
         <script>
@@ -368,11 +348,6 @@
             else {
                 $("#customEmbedParams").slideToggle(200);
             }
-        };
-        //Json Download function
-        downloadJSON = () => {
-            let jsonContent = document.getElementById('appendJSON');
-            window.open('_blank').document.write(jsonContent.innerHTML);
         };
         let runtimeFields = $("#appendJSON,#appendStats,#loadTime,#entryIdText,#uiconfText,#appVersion");
         //Self executing function that fades elements in.
@@ -394,7 +369,6 @@
             }
         });
         //Plugin appender
-
         showReloadWarning = () => $("#updateNotification").fadeIn(500);
         //Open tinyUrl button
         tiny = () => {
