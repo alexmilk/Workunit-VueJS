@@ -1,5 +1,7 @@
 # Kaltura Debugging workshop based on VueJS.
+<p align="center">
 ![Kaltura Debugging workship](https://github.com/alexmilk/Workunit-VueJS/blob/master/images/logo_git.jpg?raw=true)
+</p>
 
 The MW debugging instance consolidated the right tools for the job to allow support engineers debug, investigate and test various player related issues and tasks, the instance contains links to 3rd party tools online, as well as a built in VPAAS search engine and the main testing application that binds itself to the embedded player. Engineers can modify the embed code at runtime, add flashvars, plugins and other scripts to manipulate the player behavior during the investigation.
 
