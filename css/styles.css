@@ -326,7 +326,6 @@ body {
 #appendJSON {
     width: 558px;
     height: 400px;
-    float: left;
     counter-reset: line;
     text-align: left;
     overflow-x:scroll;
