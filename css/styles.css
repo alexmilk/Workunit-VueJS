@@ -224,7 +224,7 @@ body {
     height: 400px;
     color: white;
     background-color: black;
-    overflow-y: scroll;
+    overflow-y: visible;
     overflow-x: hidden;
     border: 1px solid darkgrey;
     border-radius: 4px;
@@ -306,7 +306,7 @@ body {
     font-family: Arial;
     color: white;
     font-size: x-small;
-    overflow-x: hidden !important;
+    overflow-x: visible !important;
     float: right;
     word-wrap: break-word;
     counter-reset: line;
