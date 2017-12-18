@@ -9,3 +9,7 @@ hideJsonModal = () => {
 showJsonModal = () => {
     $('#jsonModal').modal('show');
 };
+openJson = () => {
+    let jsonText = document.getElementById('appendJSON').textContent;
+    document.open(jsonText)
+};

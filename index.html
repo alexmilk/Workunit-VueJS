@@ -13,6 +13,7 @@
     <script src="https://jsoverson.github.io/jquery.pulse.js/jquery.pulse.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/mainEmbed.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="js/modal.js"></script>
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -44,6 +45,7 @@
             </div>
 
             <div class="modal-footer">
+                <button style="vertical-align: sub;" id="copyButton" type="button" onclick="openJson()" class="btn btn-primary btn-sm">Download</button>
                 <button style="vertical-align: sub;" id="okButton" type="button" class="btn btn-primary btn-sm" onclick="hideJsonModal()">OK</button>
             </div>
         </div>
@@ -58,7 +60,7 @@
                 <h4 class="modal-title">Please enter embed params:</h4>
             </div>
             <div class="modal-body">
-                <img src="images/testunit_logo.jpg" class="pull-right">
+                <img src="images/testunit_logo.jpg" class="pull-right" width="230" style="padding-right: 30px; margin-right: 20px; width: 229px;">
                 <table>
                     <colgroup>
                         <col span="1" style="background-color:white">
@@ -130,7 +132,7 @@
             </div>
             <div class="modal-footer">
                 <notification id="modalNotifications" style="text-align: left; display: inline;"></notification>
-                <button v-bind:disabled="checkDisable" style="vertical-align: sub;" id="submitButton" type="button" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Submit</button>
+                <button v-bind:disabled="checkDisable" style="vertical-align: sub;" id="submitButton" type="button" class="btn-success btn-sm" onclick="embedWidget();hideModal()">Submit</button>
                 <button id="loadDefaults" type="button" style="vertical-align: sub;" class="btn btn-primary btn-sm" onclick="embedWidget();hideModal()">Load Defaults</button>
             </div>
         </div>
