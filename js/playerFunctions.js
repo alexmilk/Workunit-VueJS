@@ -118,5 +118,8 @@ const pageFunctions = {
         selectors.varsDiv.val(JSON.stringify(plugins[selectors.prop].json, null, 2));
         selectors.varsDiv.focus();
         showReloadWarning();
+    },
+    showHowTo: () => {
+        $('#howToModal').modal({show:true})
     }
 };

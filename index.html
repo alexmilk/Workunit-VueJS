@@ -333,9 +333,33 @@
         </select>
             </span>
             <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit" />
+            <button class="btn btn-warning" onclick="pageFunctions.showHowTo()"><span class="glyphicon glyphicon-question-sign"></span></button>
         </div>
     </div>
 </div><br>
+<!--How to modal-->
+<div class="modal in" id="howToModal" aria-hidden="false" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Adding / overriding configuration</h4>
+            </div>
+            <div class="modal-body">
+                <p>You will need to write the configuration as a JSON. This JSON is very strict and must be valid. You can write your own configuration or use a common snippet from the drop-down.</p>
+                <p></p>
+                <p>Here's how to add a simple flashvar:&nbsp;</p>
+                <pre>{<br>"autoPlay" : true<br>}</pre>
+                <p>Here's how to add a new plugin </p>
+                <pre>{<br>&nbsp; &nbsp;"myPlugin" : {<br>&nbsp; &nbsp;  "plugin" : true, <br>&nbsp; &nbsp;  "attribute1" : 12,<br>&nbsp; &nbsp;  "attribute2" : "some string"<br>&nbsp;  }<br>}</pre>
+                <p></p>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!--The bottom monitor-->
 <div style="width:1125px; height: 410px; margin: 0 auto;">
     <div id="analyticsLog" style="float: left; box-sizing: border-box; width: 1125px;">
