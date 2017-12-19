@@ -74,5 +74,11 @@ var plugins = [
         "json" : {
             "ks": "Enter KS String here"
         }
+    },
+    {
+        "displayName" : "LiveCore - Disable Live Check",
+        "json" : {
+            "liveCore.disableLiveCheck": true
+        }
     }
 ];
