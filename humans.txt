@@ -1,0 +1,37 @@
+
+                            
+/* TEAM */
+
+                            
+Alex Milkis.
+
+                            
+https://alexmilk.github.io/Workunit-VueJS/#
+
+                                                       
+Tel-Aviv, Israel.
+
+                         
+                 
+                        [...]
+						
+
+							
+/* THANKS */
+
+							
+Name: name or url
+
+						
+                 
+                        [...]
+                        
+
+                            
+Standards: HTML5, CSS3, JAVASCRIPT, VUE-JS
+
+                            
+Components: jQuery, BOOTSTRAP.
+
+                            
+Software: WEBSTORM, SUBLIME.
