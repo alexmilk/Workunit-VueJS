@@ -8,7 +8,8 @@ const kdpFunctions = {
     reload: () => {document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("doReplay")},
     getBitrate: () => {
         let playerFrame = document.kPlayer_ifp_ifp.kPlayer_ifp;
-        $("#appendStats").prepend("<h5>" + playerFrame.plugins.morePlugins.embedPlayer.currentBitrate + "</h5>");
+        let bitrate = playerFrame.plugins.morePlugins.embedPlayer.currentBitrate;
+        $("#appendStats").prepend("<h5>" + bitrate + "</h5>");
     },
     getFlavor: () => {
         const playerSource = document.kPlayer_ifp_ifp.kPlayer_ifp, currentSource = playerSource.getSource();
@@ -42,8 +43,9 @@ const kdpFunctions = {
     },
     getCaptions: () => {
         let playerCaptions = document.kPlayer_ifp_ifp.kPlayer_ifp.mediaElement.getTextTracks();
+        let monitor = parent.document.getElementById('appendStats');
         for (let i = 0; i < playerCaptions.length; i++) {
-            parent.document.getElementById('appendStats').append(JSON.stringify(playerCaptions[i], null, 2));
+            monitor.append(JSON.stringify(playerCaptions[i], null, 2));
         }
     },
     removeThumb: () => {
