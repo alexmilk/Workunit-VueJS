@@ -1,3 +1,7 @@
+/**
+ * Created by alex.milkis on 13/12/2017.
+ */
+
 const adSlots = {
     inlinePreroll: {
         "slotType": "Inline preroll",
@@ -27,6 +31,4 @@ const adSlots = {
         "slotType": "No ads",
         "adTagUrl": null,
     }
-};/**
- * Created by alex.milkis on 13/12/2017.
- */
+};

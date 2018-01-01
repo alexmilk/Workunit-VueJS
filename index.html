@@ -196,7 +196,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="searchInput" placeholder="Search VPaaS">
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit" onclick="pageFunctions.vpaasSearch()">
+                        <button class="btn btn-default" type="submit" onclick="pageFunctions.vpaasSearch(); return false;">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
@@ -245,7 +245,7 @@
 <!--Lower section containing controls buttons and custom embed-->
 <div style="clear: both;"></div>
 <div id="mainControlDiv" style="margin-top: 15px">
-    <button type="button" onclick="changeEmbed()" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
+    <button type="button" onclick="changeEmbed();checkEmbedParams();" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
     <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
@@ -291,6 +291,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
+
     <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
         <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
             <form onsubmit="return false;" class="form-horizontal">
@@ -407,6 +408,21 @@
                 success: function() {
                 $("#appendStats").append("<h5>" + data + "</h5>");
             }})};
+        function checkEmbedParams() {
+            let radioConfigs = {
+                "localEmbedRadio": document.getElementById("selectLocal"),
+                "cdnEmbedRadio": document.getElementById("selectCdn"),
+                "secureEmbedRadio": document.getElementById("selectSecure")
+            };
+            if (window.location.protocol === 'https:') {
+                radioConfigs.localEmbedRadio.disabled = true;
+                radioConfigs.cdnEmbedRadio.disabled = true;
+                radioConfigs.secureEmbedRadio.setAttribute("checked", "");
+            } else {
+                radioConfigs.localEmbedRadio.setAttribute("checked", "");
+                radioConfigs.secureEmbedRadio.disabled = true;
+            }
+        };
     </script>
 </div>
 <div style="width:1125px; height: auto; margin: 0 auto;">
