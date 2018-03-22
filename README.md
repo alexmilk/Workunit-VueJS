@@ -1,4 +1,7 @@
 # Kaltura Debugging workshop based on VueJS.
+[![Vue Version](https://img.shields.io/badge/vue-2.2.4-green.svg)](https://vuejs.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 <p align="center">
 <img src="https://github.com/alexmilk/Workunit-VueJS/blob/master/images/logo_git.jpg?raw=true">
 </p>
