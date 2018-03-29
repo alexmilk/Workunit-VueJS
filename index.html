@@ -252,6 +252,7 @@
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
     <button type="button" class="btn btn-primary btn-sm" onclick=showJsonModal()>Download JSON</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick=checkIpAddress()>Check IP</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
@@ -291,7 +292,9 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         Don't forget to reload the player after making any changes.
     </div>
+    <div id="ipToLocationFrame" style="padding: 15px; border: 1px solid #e7e7e7">
 
+    </div>
     <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
         <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
             <form onsubmit="return false;" class="form-horizontal">

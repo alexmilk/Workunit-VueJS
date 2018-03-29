@@ -116,6 +116,13 @@ body {
     /*padding: 10px;*/
     display: none;
 }
+#ipToLocationFrame{
+    width: 1105px;
+    margin-top: 15px;
+    text-align: left;
+    /*padding: 10px;*/
+    display: none;
+}
 #uivarsOverride {
     width: 750px !important;
     height: 270px;
