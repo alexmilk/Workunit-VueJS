@@ -1,6 +1,7 @@
 /**
  * Created by alex.milkis on 06/12/2017.
  * This js file contains only player and page functions.
+ * Do not share, copy or use without proper permission.
  */
 
 const kdpFunctions = {
