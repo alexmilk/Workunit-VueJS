@@ -26,6 +26,7 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="Components/introModal.js"></script>
     <script src="js/playerFunctions.js"></script>
+    <script src="js/pageFunctions.js"></script>
 </head>
 <body bgproperties="fixed">
 <!--The top error bar element-->
@@ -43,7 +44,6 @@
             <div class="modal-body">
                 <pre id="appendJSON"></pre>
             </div>
-
             <div class="modal-footer">
                 <button style="vertical-align: sub;" id="copyButton" type="button" onclick="openJson()" class="btn btn-primary btn-sm">Download</button>
                 <button style="vertical-align: sub;" id="okButton" type="button" class="btn btn-primary btn-sm" onclick="hideJsonModal()">OK</button>
@@ -103,7 +103,7 @@
                             <h5 v-text="message4"></h5>
                         </td>
                         <td>
-                            <input class='form-control' id="tagPrototype" style="margin-left: -20px;" onkeypress="allowSubmit()"type="text" placeholder="v2.63" v-model="tagId"/>
+                            <input class='form-control' id="tagPrototype" style="margin-left: -20px;" onkeypress="allowSubmit()" type="text" placeholder="v2.63" v-model="tagId" />
                         </td>
                         <td><img src="images/sucess.png" width="25" height="25" style="display: none" v-bind:class="tagTick" />
                             <img src="images/error.png" alt="Check your tag" width="25" height="25" style="display: none" v-bind:class="tagErrorTick" />
@@ -252,7 +252,7 @@
     <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
     <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
     <button type="button" class="btn btn-primary btn-sm" onclick=showJsonModal()>Download JSON</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick=checkIpAddress()>Check IP</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.checkIpAddress()">Check IP</button>
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
