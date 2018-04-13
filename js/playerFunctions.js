@@ -3,22 +3,24 @@
  * This js file contains only player and page functions.
  * Do not share, copy or use without proper permission.
  */
-
+let playerFrame = () => {
+    return document.kPlayer_ifp_ifp.kPlayer_ifp;
+    };
 const kdpFunctions = {
-    doPlay: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay')},
-    doStop: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop')},
-    reload: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("doReplay")},
+    doPlay: () => { playerFrame().sendNotification('doPlay')},
+    doStop: () => { playerFrame().sendNotification('doStop')},
+    reload: () => { playerFrame().sendNotification("doReplay")},
     getBitrate: () => {
-        let bitrate = playerFrame.plugins.morePlugins.embedPlayer.currentBitrate;
+        let bitrate = playerFrame().plugins.morePlugins.embedPlayer.currentBitrate;
         $("#appendStats").prepend("<h5>" + bitrate + "</h5>");
     },
     getFlavor: () => {
-        const playerSource = document.kPlayer_ifp_ifp.kPlayer_ifp, currentSource = playerFrame.getSource();
+        let currentSource = playerFrame().getSource();
         window.open(currentSource.src, '_blank');
     },
     setEntry: () => {
         let input = document.getElementById("entryInput").value;
-        document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('changeMedia', {'entryId': input});
+        playerFrame().sendNotification('changeMedia', {'entryId': input});
         runtimeFields.text('');
         pageFunctions.cleanErrors();
     },
@@ -34,7 +36,7 @@ const kdpFunctions = {
     },
     goToVast: () => {
         let vastInspectUrl = 'https://developers.google.com/interactive-media-ads/docs/sdks/html5/vastinspector?tag=';
-        let playerAdTag = document.kPlayer_ifp_ifp.kalturaIframePackageData.playerConfig.plugins.doubleClick.adTagUrl;
+        let playerAdTag = playerFrame().playerConfig.plugins.doubleClick.adTagUrl;
         let encodedAdTag = encodeURIComponent(playerAdTag);
         if (playerAdTag === undefined) {
             alert("DoubleClick is not configured")
@@ -43,7 +45,7 @@ const kdpFunctions = {
         }
     },
     getCaptions: () => {
-        let playerCaptions = document.kPlayer_ifp_ifp.kPlayer_ifp.mediaElement.getTextTracks();
+        let playerCaptions = playerFrame().mediaElement.getTextTracks();
         let monitor = parent.document.getElementById('appendStats');
         for (let i = 0; i < playerCaptions.length; i++) {
             monitor.append(JSON.stringify(playerCaptions[i], null, 2));

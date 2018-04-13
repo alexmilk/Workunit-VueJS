@@ -95,6 +95,7 @@ let embed = function() {
     kWidget.addReadyCallback(function(playerId) {
         let kdp = document.getElementById(playerId);
         kdp.kBind('playerReady', function() {
+
             let runtimes = {
                 pageTitle: $('#pageTitle'),
                 entryIdField: $("#entryIdText"),

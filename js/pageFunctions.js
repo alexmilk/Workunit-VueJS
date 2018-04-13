@@ -2,6 +2,9 @@
  * Created by alex.milkis on 12/4/2018.
  * This js file contains only player and page functions.
  */
+let playerFrame = () => {
+    return document.kPlayer_ifp_ifp.kPlayer_ifp;
+};
 const pageFunctions = {
     checkAdTag: (input) => {window.open(input)},
     cleanMonitor: () => $('#appendStats').text(''),
@@ -18,7 +21,7 @@ const pageFunctions = {
     },
     getSource: () => {
         let getSource = $("#getSource");
-        let playerSources = document.kPlayer_ifp_ifp.kPlayer_ifp.getSources();
+        let playerSources = playerFrame().getSources();
         for (let i = 0; i < playerSources.length; i++) {
             parent.document.getElementById('appendStats').append(JSON.stringify(playerSources[i], null, 2));
         }
