@@ -4,9 +4,9 @@
  */
 
 const kdpFunctions = {
-    doPlay: () => {playerFrame.sendNotification('doPlay')},
-    doStop: () => {playerFrame.sendNotification('doStop')},
-    reload: () => {playerFrame.sendNotification("doReplay")},
+    doPlay: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doPlay')},
+    doStop: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification('doStop')},
+    reload: () => { document.kPlayer_ifp_ifp.kPlayer_ifp.sendNotification("doReplay")},
     getBitrate: () => {
         let bitrate = playerFrame.plugins.morePlugins.embedPlayer.currentBitrate;
         $("#appendStats").prepend("<h5>" + bitrate + "</h5>");
