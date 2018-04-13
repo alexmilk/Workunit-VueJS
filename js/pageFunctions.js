@@ -2,9 +2,6 @@
  * Created by alex.milkis on 12/4/2018.
  * This js file contains only player and page functions.
  */
-let playerFrame = () => {
-    return document.kPlayer_ifp_ifp.kPlayer_ifp;
-};
 const pageFunctions = {
     checkAdTag: (input) => {window.open(input)},
     cleanMonitor: () => $('#appendStats').text(''),
@@ -55,5 +52,12 @@ const pageFunctions = {
             beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*');},
             success: function(data) {
                 $("#appendStats").append("<h5>" + data + "</h5>");
-            }})}
+            }})},
+    renderName: () => {
+        let toggleStatus = document.getElementById('playerToggle');
+        if (toggleStatus.classList.contains("collapsed") === true) {
+            toggleStatus.textContent = "\u25BC Embed Section";
+        } else if (toggleStatus.classList.contains("collapsed") === false) {
+            toggleStatus.textContent = "\u25B2 Embed Section";
+        }}
 };

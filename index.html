@@ -235,12 +235,25 @@
 </div>
 <br>
 <!--The middle section of the player and monitor elements-->
-<div style="width:1125px; height: 320px; margin: auto;">
-    <!--The player element-->
-    <div id="kPlayer_ifp" itemprop="video" itemscope></div>
-    <!--The monitor element-->
-    <pre id="appendStats"></pre>
-    <div style="clear: both;"></div>
+<div id="middleSectionContainer" class="container" style="width: 1125px !important; height: auto;">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a id="playerToggle" data-toggle="collapse" href="#collapse1" onclick="pageFunctions.renderName()" style="text-decoration: none !important;">&#9660; Embed Section</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in" style="padding: 5px !important">
+                <div id='middleSection' style="width:1125px; height: 320px;">
+                    <!--The player element-->
+                    <div id="kPlayer_ifp" itemprop="video" itemscope></div>
+                    <!--The monitor element-->
+                    <pre id="appendStats"></pre>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--Lower section containing controls buttons and custom embed-->
 <div style="clear: both;"></div>
