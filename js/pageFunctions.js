@@ -2,6 +2,7 @@
  * Created by alex.milkis on 12/4/2018.
  * This js file contains only player and page functions.
  */
+let checkStatus;
 const pageFunctions = {
     checkAdTag: (input) => {window.open(input)},
     cleanMonitor: () => $('#appendStats').text(''),
@@ -58,6 +59,19 @@ const pageFunctions = {
         if (toggleStatus.classList.contains("collapsed") === true) {
             toggleStatus.textContent = "\u25BC Embed Section";
         } else if (toggleStatus.classList.contains("collapsed") === false) {
-            toggleStatus.textContent = "\u25B2 Embed Section";
-        }}
+            toggleStatus.textContent = "\u25B6 Embed Section";
+        }},
+    markFalse: () => {
+        checkStatus = false;
+    },
+    renderLogger: () => {
+        let ele = document.getElementById('logToggle');
+        if (checkStatus === false) {
+            ele.textContent = "\u25B6 Open Logger";
+            checkStatus = true
+        } else {
+            checkStatus = false;
+            ele.textContent = "\u25BC Close Logger";
+        }
+    }
 };

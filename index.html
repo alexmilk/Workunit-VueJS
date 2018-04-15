@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 
-<!-- mwDebuggerUnit based on Vue.JS for the Kaltura player -->
-<!-- Version 3.2 -->
+<!-- Kaltura Player Debugging workshop based on VueJS -->
+<!-- Version 3.5 -->
 <!-- Copyright(c) 2017 Alex Milkis <alex.milkis@kaltura.com> -->
 <!-- MIT Licensed. http://www.opensource.org/licenses/mit-license.php -->
 <!-- http://corp.kaltura.com -->
@@ -345,12 +345,14 @@
         <div style="width: 700px; display: inline-block;">
             <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
             <span>
-        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
-            <option selected disabled>Select a plugin preset</option>
-        </select>
-            </span>
+		<select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
+			<option selected disabled>Select a plugin preset</option>
+		</select>
+	        </span>
             <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit" />
-            <button class="btn btn-warning" onclick="pageFunctions.showHowTo()"><span class="glyphicon glyphicon-question-sign"></span></button>
+            <button class="btn btn-warning" onclick="pageFunctions.showHowTo()">
+                <span class="glyphicon glyphicon-question-sign"></span>
+            </button>
         </div>
     </div>
 </div><br>
@@ -378,8 +380,24 @@
     </div>
 </div>
 <!--The bottom monitor-->
-<div style="width:1125px; height: 410px; margin: 0 auto;">
-    <div id="analyticsLog" style="float: left; box-sizing: border-box; width: 1125px;">
+<div style="width:1170px; height: auto; margin: 0 auto;">
+    <div id="bottomLogContainer" class="container" style="width: 1159px !important; height: auto;">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a id="logToggle" data-toggle="collapse" href="#collapse2" onload="pageFunctions.markFalse()" onclick="pageFunctions.renderLogger()" style="text-decoration: none !important;">&#9654; Toggle Logger</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse" style="padding: 5px !important">
+                    <div id='loggerSection' style="width:1160px; height: 399px;">
+                        <!--The logger element-->
+                        <div id="analyticsLog" style="float: left; box-sizing: border-box; width: 1118px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
         <script>
         showModalErr = () => {
@@ -449,8 +467,19 @@
 </div>
 <div style="clear: both;"></div>
 <div id="footer">
-    <p id="footer p" style="margin: 0 !important;">Created by Alex Milkis &copy; 2017 </p></div>
-<script>
+    <p id="footer p" style="margin: 0 !important;">&#169; 2017 Alex Milkis |
+        <a href="https://github.com/alexmilk">
+            <img src="images/white-github-256.png" width="16px"/>
+        </a> |
+        <a href="https://www.linkedin.com/in/alex-milkis-64075189/">
+            <img src="images/white-linkedin-256.png" width="16px"/>
+        </a> |
+        <a href="mailto: alexedm88@gmail.com">
+            <img src="images/white-new-post-256.png" width="16px"/>
+        </a>
+    </p>
+</div>
+    <script>
     $(window).on('load', function () {
         let radioConfigs = {
             "localEmbedRadio": document.getElementById("useLocalEmbed"),
