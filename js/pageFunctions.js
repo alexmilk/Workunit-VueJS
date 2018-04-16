@@ -1,14 +1,21 @@
-/**
- * Created by alex.milkis on 12/4/2018.
- * This js file contains only player and page functions.
- */
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+//The page functions script                                  ||
+//Created by Alex Milkis - 2017                              ||
+//The MIT License                                            ||
+//+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+const panelStatus = {
+    embedPanel: null,
+    loggerPanel: null
+};
 let checkStatus;
+let checkControlsStatus;
 const pageFunctions = {
-    checkAdTag: (input) => {window.open(input)},
+    checkAdTag: (input) => {this.open(input)},
     cleanMonitor: () => $('#appendStats').text(''),
     vpaasSearch:  () => {
         let searchTerm = $('#searchInput').val();
-        window.open("https://vpaas.kaltura.com/search/#stq=" + searchTerm + "&stp=1")
+        this.open("https://vpaas.kaltura.com/search/#stq=" + searchTerm + "&stp=1")
     },
     cleanErrors: () => {
         let errorBar = $("#errorBar h4");
@@ -55,22 +62,33 @@ const pageFunctions = {
                 $("#appendStats").append("<h5>" + data + "</h5>");
             }})},
     renderName: () => {
-        let toggleStatus = document.getElementById('playerToggle');
+        let ele = document.getElementById('playerToggle');
+        if (panelStatus.embedPanel === true) {
+            ele.textContent = "\u25BC Close Embed Section";
+            panelStatus.embedPanel = false;
+        } else {
+            panelStatus.embedPanel = true;
+            ele.textContent = "\u25B6 Open Embed Section"
+        }
+        toggleStatus = document.querySelector('#playToggle');
         if (toggleStatus.classList.contains("collapsed") === true) {
             toggleStatus.textContent = "\u25BC Embed Section";
         } else if (toggleStatus.classList.contains("collapsed") === false) {
             toggleStatus.textContent = "\u25B6 Embed Section";
         }},
     markFalse: () => {
-        checkStatus = false;
+        panelStatus.embedPanel = false;
+    },
+    markFalse2: () => {
+        panelStatus.loggerPanel = false;
     },
     renderLogger: () => {
         let ele = document.getElementById('logToggle');
-        if (checkStatus === false) {
+        if (panelStatus.loggerPanel === false) {
             ele.textContent = "\u25B6 Open Logger";
-            checkStatus = true
+            panelStatus.loggerPanel = true
         } else {
-            checkStatus = false;
+            panelStatus.loggerPanel = false;
             ele.textContent = "\u25BC Close Logger";
         }
     }

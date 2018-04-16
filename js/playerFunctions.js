@@ -29,7 +29,7 @@ const kdpFunctions = {
         kWidget.addReadyCallback(function (playerId) {
             let kdp = document.getElementById(playerId);
             let input = document.getElementById("ksInput").value;
-            kdp.setKDPAttribute('servicesProxy.kalturaClient', 'ks', input);
+            kdp.setKDPAttribute('servicesProxy.kalturaClient', 'ks', i1nput);
             runtimeFields.text('');
             pageFunctions.cleanErrors();
         });
@@ -52,13 +52,15 @@ const kdpFunctions = {
         }
     },
     removeThumb: () => {
-        const playerContent = $("#kPlayer_ifp_ifp").contents()[0];
-        const playerThumb = $(playerContent).find("#kPlayer_ifp");
-        if ($(playerThumb).css("visibility") == 'visible') {
+        const ele = {
+            playerContent: document.getElementById("kPlayer_ifp_ifp").contents()[0],
+            playerThumb: $(this.playerContent).find("#kPlayer_ifp")
+        };
+        if ($(ele.playerThumb).css("visibility") === 'visible') {
             document.getElementById('removeThumb').textContent = "Show thumbnail";
-            $(playerThumb).css("visibility", "hidden");
+            $(ele.playerThumb).css("visibility", "hidden");
         } else {
-            $(playerThumb).css("visibility", "visible");
+            $(ele.playerThumb).css("visibility", "visible");
             document.getElementById('removeThumb').textContent = "Hide thumbnail";
         }
     },

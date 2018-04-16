@@ -136,7 +136,7 @@ body {
     margin-bottom: 0;
     margin-top: 10px;
     bottom: 0;
-    position: static;
+    position: fixed;
     background-color: #333;
     height: 25px;
     text-align: center;
@@ -147,6 +147,7 @@ body {
     font-family: Arial;
     color: white;
     padding-top: 5px;
+    z-index: 99999;
 }
 .inputBtn {
     background-color: #b5b5b5;

@@ -240,7 +240,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a id="playerToggle" data-toggle="collapse" href="#collapse1" onclick="pageFunctions.renderName()" style="text-decoration: none !important;">&#9660; Embed Section</a>
+                    <a id="playerToggle" data-toggle="collapse" href="#collapse1" onload="pageFunctions.markFalse2()" onclick="pageFunctions.renderName()" style="text-decoration: none !important;">&#9660; Close Embed Section</a>
                 </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse in" style="padding: 5px !important">
@@ -269,7 +269,7 @@
     <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
     <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
     <form class="navbar-form" style="padding: 0px">
-        <div class="input-group">
+        <div class="input-group" style="z-index: 0;">
             <input type="text" class="form-control" id="entryInput" placeholder="Media Changer" style="width: 202px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="kdpFunctions.setEntry();">
@@ -279,7 +279,7 @@
         </div>
     </form>
     <form class="navbar-form" style="padding: 0px">
-        <div class="input-group">
+        <div class="input-group" style="z-index: 0;">
             <input type="text" class="form-control" id="ksInput" placeholder="Set KS" style="width: 202px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="kdpFunctions.setKS();">
@@ -289,7 +289,7 @@
         </div>
     </form>
     <form class="navbar-form" style="padding: 0px; display: inline" id="formAd">
-        <div class="input-group">
+        <div class="input-group" style="z-index: 0;">
             <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit" onclick="pageFunctions.checkAdTag(document.getElementById('adTagId').value)">
