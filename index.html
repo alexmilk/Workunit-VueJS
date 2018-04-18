@@ -257,104 +257,118 @@
 </div>
 <!--Lower section containing controls buttons and custom embed-->
 <div style="clear: both;"></div>
-<div id="mainControlDiv" style="margin-top: 15px">
-    <button type="button" onclick="changeEmbed();checkEmbedParams();" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
-    <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick=showJsonModal()>Download JSON</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.checkIpAddress()">Check IP</button>
-    <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
-    <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
-    <form class="navbar-form" style="padding: 0px">
-        <div class="input-group" style="z-index: 0;">
-            <input type="text" class="form-control" id="entryInput" placeholder="Media Changer" style="width: 202px !important;">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setEntry();">
-                    GO!
-                </button>
+<div id="controlSectionContainer" class="container" style="width: 1155px !important; height: auto;">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a id="controlsToggle" data-toggle="collapse" href="#collapse3" onload="pageFunctions.markFalse3()" onclick="pageFunctions.renderControls()" style="text-decoration: none !important;">&#9654; Open Controls</a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse" style="padding: 5px !important">
+                <div id="mainControlDiv" style="margin-top: 15px">
+                    <button type="button" onclick="changeEmbed();checkEmbedParams();" class="btn btn-primary btn-sm" style="float: left;">Customize Embed code</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doPlay()">Force Play</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.doStop()">Force Stop</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.getSource()">Get Sources</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="kdpFunctions.getCaptions()">Get Captions</button>
+                    <button type="button" id="getTiny" class="btn btn-primary btn-sm" onclick="kdpFunctions.getBitrate()">Get Bitrate</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick=showJsonModal()>Download JSON</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="pageFunctions.checkIpAddress()">Check IP</button>
+                    <button class="btn btn-basic btn-sm pull-right" style="margin: 0px; margin-right: 0" id="clearStats" onclick="pageFunctions.cleanMonitor()">Clear monitor</button>
+                    <button type="button" onclick="buildPath();pageFunctions.cleanErrors();" class="btn btn-primary btn-sm" style="float: left;">Reload player</button>
+                    <form class="navbar-form" style="padding: 0px">
+                        <div class="input-group" style="z-index: 0;">
+                            <input type="text" class="form-control" id="entryInput" placeholder="Media Changer" style="width: 202px !important;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setEntry();">
+                                    GO!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="navbar-form" style="padding: 0px">
+                        <div class="input-group" style="z-index: 0;">
+                            <input type="text" class="form-control" id="ksInput" placeholder="Set KS" style="width: 202px !important;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setKS();">
+                                    GO!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="navbar-form" style="padding: 0px; display: inline" id="formAd">
+                        <div class="input-group" style="z-index: 0;">
+                            <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" onclick="pageFunctions.checkAdTag(document.getElementById('adTagId').value)">
+                                    GO!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="pageFunctions.appendSlot(event)">
+                        <option selected disabled>Select sample ad tag</option>
+                    </select>
+                    <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Don't forget to reload the player after making any changes.
+                    </div>
+                    <div id="ipToLocationFrame" style="padding: 15px; border: 1px solid #e7e7e7">
+                        <div class ="pull-left" id="mainIpForm" style="width: 300px;"></div>
+                    </div>
+                    <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
+                        <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
+                            <form onsubmit="return false;" class="form-horizontal">
+                                <table style="width: 370px; height: 190px">
+                                    <tr>
+                                        <td>
+                                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                                <span class="input-group-addon" style="width: 63px">Partner ID</span>
+                                                <input id="partnerId" type="text" class="form-control" name="partnerid">
+                                            </div>
+                                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                                <span class="input-group-addon" style="width: 88px">Player ID</span>
+                                                <input id="uiconfId" type="text" class="form-control" name="playerid">
+                                            </div>
+                                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
+                                                <span class="input-group-addon" style="width: 88px">Entry ID</span>
+                                                <input id="entryId" type="text" class="form-control" name="entryid">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Please choose embed method:</p>
+                                            <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span>
+                                            <br>
+                                            <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use CDN embed</span>
+                                            <br>
+                                            <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use Secure embed</span>
+                                            <br>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div style="width: 700px; display: inline-block;">
+                            <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
+                            <span>
+        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
+            <option selected disabled>Select a plugin preset</option>
+        </select>
+            </span>
+                            <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit" />
+                            <button class="btn btn-warning" onclick="pageFunctions.showHowTo()">
+                                <span class="glyphicon glyphicon-question-sign"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
-    <form class="navbar-form" style="padding: 0px">
-        <div class="input-group" style="z-index: 0;">
-            <input type="text" class="form-control" id="ksInput" placeholder="Set KS" style="width: 202px !important;">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="kdpFunctions.setKS();">
-                    GO!
-                </button>
-            </div>
-        </div>
-    </form>
-    <form class="navbar-form" style="padding: 0px; display: inline" id="formAd">
-        <div class="input-group" style="z-index: 0;">
-            <input type="text" class="form-control" id="adTagId" oninput="showReloadWarning()" placeholder="Adtag Tester" style="width: 202px !important;">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" onclick="pageFunctions.checkAdTag(document.getElementById('adTagId').value)">
-                    GO!
-                </button>
-            </div>
-        </div>
-    </form>
-    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="pageFunctions.appendSlot(event)">
-        <option selected disabled>Select sample ad tag</option>
-    </select>
-    <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Don't forget to reload the player after making any changes.
     </div>
-    <div id="ipToLocationFrame" style="padding: 15px; border: 1px solid #e7e7e7">
-    <div class ="pull-left" id="mainIpForm" style="width: 300px;"></div>
-    </div>
-    <div id="customEmbedParams" style="padding: 15px; border: 1px solid #e7e7e7">
-        <div class="pull-left" style="width: 300px; float: left; padding-top: 48px;">
-            <form onsubmit="return false;" class="form-horizontal">
-                <table style="width: 370px; height: 190px">
-                    <tr>
-                        <td>
-                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                                <span class="input-group-addon" style="width: 63px">Partner ID</span>
-                                <input id="partnerId" type="text" class="form-control" name="partnerid">
-                            </div>
-                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                                <span class="input-group-addon" style="width: 88px">Player ID</span>
-                                <input id="uiconfId" type="text" class="form-control" name="playerid">
-                            </div>
-                            <div class="input-group" style="width: 250px; margin-bottom: 10px">
-                                <span class="input-group-addon" style="width: 88px">Entry ID</span>
-                                <input id="entryId" type="text" class="form-control" name="entryid">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Please choose embed method:</p>
-                            <input id="selectLocal" class="radioSelector" type="radio" name="ib" style="display: inline-block;" checked/><span class="label label-primary">Use Local embed</span>
-                            <br>
-                            <input id="selectCdn" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use CDN embed</span>
-                            <br>
-                            <input id="selectSecure" class="radioSelector" type="radio" name="ib" style="display: inline-block;" /><span class="label label-primary">Use Secure embed</span>
-                            <br>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <div style="width: 700px; display: inline-block;">
-            <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
-            <span>
-		<select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
-			<option selected disabled>Select a plugin preset</option>
-		</select>
-	        </span>
-            <input onclick="buildPath()" class="btn btn-primary" style="width: 100px; display: inline;" type="submit" />
-            <button class="btn btn-warning" onclick="pageFunctions.showHowTo()">
-                <span class="glyphicon glyphicon-question-sign"></span>
-            </button>
-        </div>
-    </div>
+</div>
 </div><br>
 <!--How to modal-->
 <div class="modal in" id="howToModal" aria-hidden="false" style="display: none;">

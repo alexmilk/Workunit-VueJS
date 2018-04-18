@@ -244,10 +244,11 @@ body {
     word-wrap: break-word;
 }
 #mainControlDiv {
-    width: 1125px;
+    width: 1113px;
     height: auto;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1), 0 -1px 8px 0 rgba(0, 0, 0, 0.1);
     margin: auto;
+    margin-top: 0 !important;
     display: none;
     text-align: left;
     background-color: #f5f5f5;

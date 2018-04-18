@@ -6,7 +6,8 @@
 
 const panelStatus = {
     embedPanel: null,
-    loggerPanel: null
+    loggerPanel: null,
+    controlPanel: null
 };
 let checkStatus;
 let checkControlsStatus;
@@ -70,17 +71,15 @@ const pageFunctions = {
             panelStatus.embedPanel = true;
             ele.textContent = "\u25B6 Open Embed Section"
         }
-        toggleStatus = document.querySelector('#playToggle');
-        if (toggleStatus.classList.contains("collapsed") === true) {
-            toggleStatus.textContent = "\u25BC Embed Section";
-        } else if (toggleStatus.classList.contains("collapsed") === false) {
-            toggleStatus.textContent = "\u25B6 Embed Section";
-        }},
+    },
     markFalse: () => {
         panelStatus.embedPanel = false;
     },
     markFalse2: () => {
         panelStatus.loggerPanel = false;
+    },
+    markFalse3: () => {
+        panelStatus.controlPanel = false;
     },
     renderLogger: () => {
         let ele = document.getElementById('logToggle');
@@ -90,6 +89,16 @@ const pageFunctions = {
         } else {
             panelStatus.loggerPanel = false;
             ele.textContent = "\u25BC Close Logger";
+        }
+    },
+    renderControls: () => {
+        let ele = document.getElementById('controlsToggle');
+        if (panelStatus.controlPanel === false) {
+            ele.textContent = "\u25B6 Open Controls";
+            panelStatus.controlPanel = true
+        } else {
+            panelStatus.controlPanel = false;
+            ele.textContent = "\u25BC Close Controls";
         }
     }
 };
