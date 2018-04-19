@@ -83,12 +83,15 @@ const pageFunctions = {
     },
     renderLogger: () => {
         let ele = document.getElementById('logToggle');
+        let btn = document.getElementsByClassName('clearLog');
         if (panelStatus.loggerPanel === false) {
             ele.textContent = "\u25B6 Open Logger";
-            panelStatus.loggerPanel = true
+            panelStatus.loggerPanel = true;
+            btn[0].style.visibility = 'hidden';
         } else {
             panelStatus.loggerPanel = false;
             ele.textContent = "\u25BC Close Logger";
+            btn[0].style.visibility = 'visible';
         }
     },
     renderControls: () => {
