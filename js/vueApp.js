@@ -7,7 +7,7 @@
 
 
 let introModal = new Vue({
-    el: '#embedDialog',
+    el: '.embedDialog',
     data: {
         message1: 'Partner Id:',
         message2: 'Player Id:',
