@@ -249,14 +249,14 @@
                     <div id="kPlayer_ifp" itemprop="video" itemscope></div>
                     <!--The monitor element-->
                     <pre id="appendStats"></pre>
-                    <div style="clear: both;"></div>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!--Lower section containing controls buttons and custom embed-->
-<div style="clear: both;"></div>
+<div class="clear"></div>
 <div id="controlSectionContainer" class="container" style="width: 1155px !important; height: auto;">
     <div class="panel-group">
         <div class="panel panel-default">
@@ -307,7 +307,7 @@
                             </div>
                         </div>
                     </form>
-                    <select id="adSlotSelector" style="width: 300px !important; display: inline; vertical-align: bottom;" class="form-control" name="adPresetSelector" onchange="pageFunctions.appendSlot(event)">
+                    <select class="adSlotSelector adSelector form-control" name="adPresetSelector" onchange="pageFunctions.appendSlot(event)">
                         <option selected disabled>Select sample ad tag</option>
                     </select>
                     <div class="alert alert-warning alert-dismissible" id="updateNotification" role="alert" style="display: none; width: 450px; margin-top: 5px;">
@@ -434,7 +434,7 @@
         //Self executing function that populates the available ad tags and plugins for the custom embed function.
         $(document).ready(function() {
             let selectors = {
-                adSlot: $("#adSlotSelector"),
+                adSlot: $(".adSlotSelector"),
                 plugin: $("#pluginSelector")
             };
             for (let prop in adSlots) {
@@ -474,11 +474,11 @@
     </script>
 </div>
 <div style="width:1125px; height: 40px; margin: 0 auto;">
-    <div style="clear: both;"></div>
+    <div class="clear"></div>
     <button type="button" class="clearLog btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text(''); style="
     margin-right: 0; visibility: hidden;">Clear log</button>
 </div><br>
-<div style="clear: both;"></div>
+<div class="clear"></div>
 <div id="footer">
     <p id="footer p" style="margin: 0 !important;">&#169; 2017 Alex Milkis |
         <a href="https://github.com/alexmilk">

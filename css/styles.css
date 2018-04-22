@@ -12,6 +12,14 @@ body {
     background-attachment: fixed;
 
 }
+.adSelector {
+    width: 300px !important;
+    display: inline !important;
+    vertical-align: bottom;
+}
+.clear {
+    clear: both;
+}
 .center-block {
     display: block;
     margin-right: auto;
