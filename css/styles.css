@@ -12,6 +12,11 @@ body {
     background-attachment: fixed;
 
 }
+.bottomSection {
+    width:1125px;
+    height: 40px;
+    margin: 0 auto;
+}
 .adSelector {
     width: 300px !important;
     display: inline !important;

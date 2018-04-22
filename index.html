@@ -354,7 +354,7 @@
                         <div style="width: 700px; display: inline-block;">
                             <textarea id="uivarsOverride" class="form-control" style="margin-bottom: 10px !important; height: 350px; marign-top: 0px !important;" placeholder="Add valid flashvars:"></textarea>
                             <span>
-        <select id="pluginSelector" style="width: 200px !important; display: inline;" class="form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
+        <select style="width: 200px !important; display: inline;" class="pluginSelector form-control bg-primary" name="adPresetSelector" onchange="pageFunctions.appendPlugin(event)">
             <option selected disabled>Select a plugin preset</option>
         </select>
             </span>
@@ -435,7 +435,7 @@
         $(document).ready(function() {
             let selectors = {
                 adSlot: $(".adSlotSelector"),
-                plugin: $("#pluginSelector")
+                plugin: $(".pluginSelector")
             };
             for (let prop in adSlots) {
                 selectors.adSlot.append("<option value= " + prop + ">" + adSlots[prop].slotType + "</option>")
@@ -473,7 +473,7 @@
         };
     </script>
 </div>
-<div style="width:1125px; height: 40px; margin: 0 auto;">
+<div class="bottomSection">
     <div class="clear"></div>
     <button type="button" class="clearLog btn btn-primary btn-sm pull-right" onclick=$("#analyticsLog").text(''); style="
     margin-right: 0; visibility: hidden;">Clear log</button>
