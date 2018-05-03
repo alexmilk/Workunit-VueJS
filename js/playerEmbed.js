@@ -18,6 +18,7 @@ let buildPath = function() {
             path = radioInputs[i].id;
         }
     }
+    // http://cdnapi.kaltura.com/html5/html5lib/v2.68/mwEmbedLoader.php/p/24334200/uiconf_id/13306622
     // path = 'http://kgit.html5video.org/'+coreVer+'/mwEmbedLoader.php'+"/uiconf_id/"+$('#uiconf').val()+"/partner_id/"+$('#partnerId').val()+"/"+psVer
     // Future development core tag
     let endPoint;
